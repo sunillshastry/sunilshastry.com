@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="author" content="Sunil Shastry">
+  <meta name="keywords" content="Welcome to Sunil Shastry's Personal Portfolio.">
+  <meta name="description" content="Sunil Shastry is a web designer and a front-end web developer. View the About section to know more about him and the Project section to learn and contemplate the projects built by Sunil.">
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="../favicon/safari-pinned-tab.svg" color="#fdcfdf">
+  <link rel="shortcut icon" href="../favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#fdcfdf">
+  <meta name="msapplication-config" content="../favicon/browserconfig.xml">
+  <meta name="theme-color" content="#fdcfdf">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+  <link rel="stylesheet" type="text/css" href="../css/linker.css">
+  <link rel="stylesheet" type="text/css" href="../css/about.css">
+  <title>About</title>
+</head>
+<body>
+  <main class="main__content">
+    <a href="../index.html" class="navigation__link"><i class="fas fa-angle-double-left"></i></a>
+    <section class="main__data--container">
+        <h2 class="main__data-header">About</h2>
+        <div class="main__data-content">
+          <div class="image-container">
+            <img src="../background/profile.jpg" class="profile__img" alt="Sunil Shastry" title="Sunil Shastry">
+          </div>
+          <div class="information__container">
+            <p class="content-data">
+              Hi, I'm <span>Sunil Shastry</span>. I am a <span>web designer</span> & a <span>front-end web developer</span> with well over <span>four years</span> of experience and with a great passion for building cool things by coding. Besides web development, I am also a beginner in <span>iOS</span> & <span>Android</span> software development.
+            </p>
+            <p class="content-data">
+              I have developed several personal fully-working, efficient and responsive web applications. I have a good grasp of technologies including <span>HTML</span>, <span>CSS</span>, <span>Bootstrap</span>, <span>Sass</span>, <span>JavaScript</span>, <span>C</span>, <span>C++</span>, <span>Git</span>, <span>Python</span> and with a sound knowledge of design theory and essentials like <span>Adobe XD</span> and <span>Figma</span>.
+            </p>
+            <p class="content-data">
+              I am currently an <span>undergrad student</span> at the <span>University of Saskatchewan (UofS)</span> in Canada with a major in <span>Computer Science</span>. Check out the 
+              <a href="./projects.html" title="View Projects"><span>Projects</span></a> page section to know more about my projects and feel free to contact me for any queries. Cheers!
+            </p>
+          </div>
+        </div>
+    </section>
+    <div class="theme-container">
+      <button class="theme-tgl" id="btn-toggler">
+        <span class="inner-tgl"><i class="fas fa-sun"></i></span>
+      </button>
+      <span class="theme-information">Light Mode</span>
+    </div>
+  </main>
+  <script>
+    "use strict";
+
+    var themeBtn = document.getElementById("btn-toggler");
+    var themeContainer = document.querySelector(".theme-container");
+    var spanCircle = document.querySelector(".inner-tgl");
+    
+    themeContainer.addEventListener("click", function () {
+      var informationContainer = document.querySelector(".main__data--container");
+      informationContainer.classList.toggle("dark-mode-tgl");
+      document.querySelector(".main__data-header").classList.toggle("white-header");
+      document.querySelector(".theme-information").classList.toggle("theme-info-tgl");
+      spanCircle.classList.toggle("span-dark-tgl");
+      document.querySelector(".profile__img").classList.toggle("span-boxshadow");
+      document.querySelector(".navigation__link").classList.toggle("navigation__boxshadow");
+
+      if (informationContainer.classList.contains("dark-mode-tgl")) {
+        themeBtn.style.backgroundColor = "var(--primary)";
+        document.querySelector(".theme-information").textContent = "Night Mode";
+      } else {
+        themeBtn.style.backgroundColor = "var(--white)";
+        document.querySelector(".theme-information").textContent = "Light Mode";
+      }
+    });
+  </script>
+</body>
+</html>
