@@ -7,6 +7,25 @@ var loaderContainer = document.getElementById("loader-container");
 var loaderValue = document.getElementById("loader-value");
 var loaderContentValue = 0;
 var cookieContainer = document.querySelector(".cookie-notification");
+
+document.querySelector(".social__btn").addEventListener("click", function(){
+	document.querySelector(".mail__container").classList.toggle("mail-display");
+});
+
+document.querySelector(".mail__container").addEventListener("click", function(){
+	const textarea = document.createElement("textarea");
+	document.body.appendChild(textarea);
+	textarea.value = "sunil.shastry69@gmail.com";
+	textarea.select();
+	document.execCommand("copy");
+	textarea.remove();
+
+	document.querySelector(".mail-status").textContent = "Copied!";
+	setTimeout(() => {
+		document.querySelector(".mail-status").textContent = "Mail me at";
+	}, 1000);
+});
+
 loaderValue.innerHTML = loaderContentValue + "%";
 document.addEventListener("DOMContentLoaded", function () {
 	var contentLoaded = sessionStorage.getItem("contentLoaded");
