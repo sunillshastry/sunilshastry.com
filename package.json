@@ -1,0 +1,13 @@
+{
+  "name": "sunilshastry.com",
+  "version": "1.0.0",
+  "description": "a personal website implemented with html, sass and javascript",
+  "main": "index.js",
+  "repository": "https://github.com/sunillshastry/sunilshastry.com.git",
+  "author": "Sunil Shastry <sunil.shastry69@gmail.com>",
+  "license": "gpl-3.0",
+  "private": false,
+  "devDependencies": {
+    "prettier": "2.7.1"
+  }
+}
