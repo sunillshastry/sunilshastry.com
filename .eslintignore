@@ -1,3 +1,4 @@
 node_modules/
 public/
 src/three.min.js
+src/vanta.halo.min.js
