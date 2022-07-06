@@ -9,7 +9,8 @@
   "private": false,
   "scripts": {
     "start": "lite-server -c config/server-config.json",
-    "compile:sass": "sass src/sass:public/css --source-map"
+    "compile:sass": "sass src/sass:public/css --source-map",
+    "watch:sass": "sass src/sass:public/css --source-map --watch"
   },
   "devDependencies": {
     "@eslint/create-config": "^0.2.0",
