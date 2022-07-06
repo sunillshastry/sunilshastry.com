@@ -8,7 +8,8 @@
   "license": "GPL-3.0-or-later",
   "private": false,
   "scripts": {
-    "start": "lite-server -c config/server-config.json"
+    "start": "lite-server -c config/server-config.json",
+    "compile:sass": "sass src/sass:public/css --source-map"
   },
   "devDependencies": {
     "@eslint/create-config": "^0.2.0",
