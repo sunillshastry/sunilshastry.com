@@ -1,0 +1,8 @@
+{
+	"bracketSameLine": false,
+	"bracketSpacing": true,
+	"endOfLine": "lf",
+	"semi": true,
+	"useTabs": true,
+	"tabWidth": 2
+}
