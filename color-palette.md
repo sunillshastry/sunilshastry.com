@@ -13,6 +13,6 @@ Light Grey: #EEEEEE
 
 Dark Grey: #999999
 
-Gradient 01: #71BBB2
+Gradient 01: #79d7be;
 
-Gradient 02: #497D74
+Gradient 02: #4da1a9
