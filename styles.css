@@ -15,3 +15,8 @@ html {
 	--color-white: #ffffff;
 	--color-black: #000000;
 }
+
+*::selection {
+	background-color: var(--primary-color-2);
+	color: var(--color-white);
+}
