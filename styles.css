@@ -36,3 +36,14 @@ h2 {
 	margin-top: 2rem;
 	font-size: 3rem;
 }
+
+p:first-of-type {
+	margin-top: 2rem;
+}
+
+p {
+	font-size: 1.6rem;
+	margin-top: 1rem;
+	line-height: 1.8;
+	width: 60%;
+}
