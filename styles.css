@@ -14,6 +14,7 @@ html {
 	--background-color: #eeeeee;
 	--color-white: #ffffff;
 	--color-black: #000000;
+	--link-color: #3c3d37;
 }
 
 *::selection {
@@ -52,4 +53,10 @@ ul {
 	list-style: none;
 	margin-top: 1.6rem;
 	display: flex;
+}
+
+a {
+	text-decoration: none;
+	position: relative;
+	color: var(--link-color);
 }
