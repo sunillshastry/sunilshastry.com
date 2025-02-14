@@ -60,3 +60,10 @@ a {
 	position: relative;
 	color: var(--link-color);
 }
+
+ul li a {
+	display: inline-block;
+	transition: all 0.2s ease;
+	font-size: 1.6rem;
+	margin-right: 1rem;
+}
