@@ -20,3 +20,9 @@ html {
 	background-color: var(--primary-color-2);
 	color: var(--color-white);
 }
+
+body {
+	width: 100%;
+	background-color: var(--background-color);
+	padding: 6rem;
+}
