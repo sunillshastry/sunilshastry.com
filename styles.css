@@ -47,3 +47,9 @@ p {
 	line-height: 1.8;
 	width: 60%;
 }
+
+ul {
+	list-style: none;
+	margin-top: 1.6rem;
+	display: flex;
+}
