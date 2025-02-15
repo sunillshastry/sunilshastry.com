@@ -85,3 +85,10 @@ a::before {
 	transform: skewX(-10deg);
 	z-index: -5;
 }
+
+a:hover {
+	color: var(--color-black);
+}
+a:hover::before {
+	height: 35%;
+}
