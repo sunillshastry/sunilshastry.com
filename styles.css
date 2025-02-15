@@ -7,3 +7,94 @@
 html {
 	font-size: 62.5%;
 }
+
+@font-face {
+	font-family: PrimaryInterFontFace;
+	src: url("./font/inter.ttf");
+}
+
+:root {
+	--primary-color-1: #79d7be;
+	--primary-color-2: #4da1a9;
+	--background-color: #eeeeee;
+	--color-white: #ffffff;
+	--color-black: #000000;
+	--link-color: #999999;
+}
+
+*::selection {
+	background-color: var(--primary-color-2);
+	color: var(--color-white);
+}
+
+body {
+	width: 100%;
+	background-color: var(--background-color);
+	padding: 6rem;
+	font-family: PrimaryInterFontFace, sans-serif;
+}
+
+h1 a {
+	font-size: 5rem;
+	color: var(--color-black);
+}
+
+h2 {
+	margin-top: 2rem;
+	font-size: 3rem;
+}
+
+p:first-of-type {
+	margin-top: 2rem;
+}
+
+p {
+	font-size: 1.6rem;
+	margin-top: 1rem;
+	line-height: 1.8;
+	width: 65%;
+}
+
+ul {
+	list-style: none;
+	margin-top: 1.6rem;
+	display: flex;
+}
+
+a {
+	text-decoration: none;
+	position: relative;
+	color: var(--link-color);
+}
+
+ul li a {
+	display: inline-block;
+	transition: all 0.2s ease;
+	font-size: 1.6rem;
+	margin-right: 1rem;
+}
+
+a::before {
+	content: "";
+	display: block;
+	position: absolute;
+	background-image: linear-gradient(
+		90deg,
+		var(--primary-color-1),
+		var(--primary-color-2)
+	);
+	height: 6%;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	transition: all 0.2s ease;
+	transform: skewX(-10deg);
+	z-index: -5;
+}
+
+a:hover {
+	color: var(--color-black);
+}
+a:hover::before {
+	height: 35%;
+}
