@@ -10,7 +10,7 @@ html {
 
 @font-face {
 	font-family: Primary;
-	src: url("inter.ttf");
+	src: url("./font/inter.ttf");
 }
 
 :root {
