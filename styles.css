@@ -10,7 +10,7 @@ html {
 
 @font-face {
 	font-family: Primary;
-	src: url(./font/inter/Inter-VariableFont_opsz\wght.ttf);
+	src: url("inter.ttf");
 }
 
 :root {
@@ -31,6 +31,7 @@ body {
 	width: 100%;
 	background-color: var(--background-color);
 	padding: 6rem;
+	font-family: Primary, sans-serif;
 }
 
 h1 a {
