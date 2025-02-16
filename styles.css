@@ -120,3 +120,12 @@ a:hover::before {
 		font-size: 55%;
 	}
 }
+
+@media only screen and (max-width: 31.25em) {
+	body {
+		padding: 2rem;
+	}
+	html {
+		font-size: 52%;
+	}
+}
