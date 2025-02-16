@@ -98,3 +98,9 @@ a:hover {
 a:hover::before {
 	height: 35%;
 }
+
+@media only screen and (max-width: 75em) {
+	p {
+		width: 80%;
+	}
+}
