@@ -104,7 +104,7 @@ a:hover::before {
 		width: 80%;
 	}
 	body {
-		padding: 4.5rem;
+		padding: 6rem 4.5rem;
 	}
 }
 
@@ -113,7 +113,7 @@ a:hover::before {
 		width: 100%;
 	}
 	body {
-		padding: 3rem;
+		padding: 6rem 3rem;
 	}
 
 	html {
@@ -123,7 +123,7 @@ a:hover::before {
 
 @media only screen and (max-width: 31.25em) {
 	body {
-		padding: 2rem;
+		padding: 6rem 2rem;
 	}
 	html {
 		font-size: 52%;
