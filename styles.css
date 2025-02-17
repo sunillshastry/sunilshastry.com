@@ -26,7 +26,7 @@ body {
 	width: 100%;
 	background-color: var(--background-color);
 	padding: 6rem;
-	font-family: PrimaryInterFontFace, sans-serif;
+	font-family: "Inter", sans-serif;
 }
 
 h1 a {
@@ -112,15 +112,12 @@ a:hover::before {
 	}
 
 	html {
-		font-size: 55%;
+		font-size: 60%;
 	}
 }
 
 @media only screen and (max-width: 31.25em) {
 	body {
 		padding: 6rem 2rem;
-	}
-	html {
-		font-size: 52%;
 	}
 }
