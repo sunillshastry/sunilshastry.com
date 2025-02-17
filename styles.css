@@ -8,11 +8,6 @@ html {
 	font-size: 62.5%;
 }
 
-@font-face {
-	font-family: PrimaryInterFontFace;
-	src: url("./font/inter.ttf");
-}
-
 :root {
 	--primary-color-1: #79d7be;
 	--primary-color-2: #4da1a9;
