@@ -16,3 +16,5 @@ Dark Grey: #999999
 Gradient 01: #79d7be;
 
 Gradient 02: #4da1a9
+
+Favicon Text Color: #D1F8EF;
