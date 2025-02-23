@@ -1,6 +1,6 @@
 This favicon was generated using the following font:
 
-- Font Title: Rubik Puddles
+- Font Title: Palette Mosaic
 - Font Author: undefined
-- Font Source: https://fonts.gstatic.com/s/rubikpuddles/v2/1Ptog8bYX_qGnkLkrU5MJsQcJfC0wVMT-aE.ttf
+- Font Source: https://fonts.gstatic.com/s/palettemosaic/v11/AMOIz4aBvWuBFe3TohdW6YZ9MFiy4dxL4jSr.ttf
 - Font License: undefined)
