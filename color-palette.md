@@ -13,9 +13,9 @@ Light Grey: #EEEEEE
 
 Dark Grey: #999999
 
-Gradient 01: #79d7be;
+Gradient 01: #d397fa;
 
-Gradient 02: #4da1a9;
+Gradient 02: #8364e8;
 
 Favicon Fill: ##A6CDC6;
 
