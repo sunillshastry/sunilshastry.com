@@ -6,11 +6,11 @@
 
 ---
 
-_Welcome to the public GitHub repository of my personal website. Built with HTML and CSS_
+_Welcome to the public GitHub repository of my personal website. Built with HTML and CSS._
 
 ## Local Build
 
-1. Clone the GitHub repository
+1. Clone the GitHub repository.
 
    ```bash
    git clone git@github.com:sunillshastry/sunilshastry.com.git
@@ -42,9 +42,13 @@ Any and all colors used within the site is displayed here; Color changes made to
 - Favicon (SVG Fill): #A6CDC6 <div style="width: 30px; height: 30px; background-color: #A6CDC6; border: 1px solid gray; display: inline-block; margin-left: 15px;"></div>
 - Favicon (Text): #D1F8EF <div style="width: 30px; height: 30px; background-color: #D1F8EF; border: 1px solid gray; display: inline-block; margin-left: 15px;"></div>
 
+## Font Face
+
+The website uses the [Inter](https://rsms.me/inter/) font-face. Inter is open-source font-face, available for commercial and non-commercial projects. The website uses Inter via Google Fonts, which can be viewed [here](https://fonts.google.com/specimen/Inter).
+
 ## Sitemap
 
-The website's sitemap can be viewed [here](https://www.sunilshastry.com/sitemap.xml)
+The website's sitemap can be viewed [here](https://www.sunilshastry.com/sitemap.xml).
 
 ## Contributions
 
@@ -56,4 +60,4 @@ Hosted on [Netlify](https://netlify.app/), with Netlify's automated CI/CD workfl
 
 ## License
 
-Licensed under the [GNU General Public License v3.0](https://github.com/sunillshastry/sunilshastry.com/blob/master/LICENSE)
+Licensed under the [GNU General Public License v3.0](https://github.com/sunillshastry/sunilshastry.com/blob/master/LICENSE).
