@@ -60,6 +60,7 @@ a {
 	text-decoration: none;
 	position: relative;
 	color: var(--link-color);
+	white-space: nowrap;
 }
 
 ul li a {
