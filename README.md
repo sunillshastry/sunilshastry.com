@@ -1,6 +1,10 @@
 # Sunil Shastry
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/75a8326a-2d92-4226-9157-ae3bb777879e/deploy-status)](https://app.netlify.com/projects/sunilshastry/deploys)
+![Website Status](https://img.shields.io/website?url=https://sunilshastry.com)
+![License](https://img.shields.io/github/license/sunillshastry/sunilshastry.com)
+
+![Twitter](https://img.shields.io/twitter/follow/sunillshastry?)
 
 [https://www.sunilshastry.com](https://www.sunilshastry.com)
 
