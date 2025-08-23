@@ -74,112 +74,135 @@
 			href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
 			rel="stylesheet"
 		/>
-		<link rel="stylesheet" type="text/css" href="./styles.css" />
 		<title>Sunil Shastry | University of Saskatchewan</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			html {
+				font-size: 62.5%;
+			}
+			:root {
+				--primary-color-1: #2193b0;
+				--primary-color-2: #6dd5ed;
+			}
+
+			body {
+				background-color: transparent;
+				background-image: linear-gradient(
+					to right bottom,
+					var(--primary-color-2),
+					var(--primary-color-1)
+				);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 100vh;
+				max-height: 100vh;
+			}
+
+			main {
+				background-color: white;
+				width: 95%;
+				height: 95%;
+				box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+				padding: 15px;
+				border-radius: 2px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			main section {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+				align-items: center;
+				text-align: center;
+			}
+
+			main section h1 {
+				position: absolute;
+				font-size: 250px;
+				left: 50%;
+				top: -12rem;
+				transform: translate(-50%, -50%);
+				color: var(--primary-color-2);
+				opacity: 0.25;
+				pointer-events: none;
+			}
+			h2,
+			h4 {
+				color: var(--primary-color-1);
+				text-shadow: 0 0 2px rgba(0, 0, 0, 0.05);
+				font-size: 35px;
+				z-index: 25;
+			}
+
+			h4 {
+				font-size: 20px;
+				text-align: center;
+				opacity: 0.55;
+				margin-top: 10px;
+			}
+			section div {
+				margin-top: 20px;
+			}
+
+			section div a {
+				background-color: transparent;
+				background-image: linear-gradient(
+					to bottom,
+					var(--primary-color-2),
+					var(--primary-color-1)
+				);
+				text-decoration: none;
+				font-size: 17px;
+				color: white;
+				padding: 12px 24px;
+				border-radius: 4px;
+				display: inline-block;
+				transition: all 0.25s ease;
+				margin: 0 8px;
+			}
+
+			section div a:hover {
+				transform: translateY(-4px);
+			}
+
+			@media only screen and (max-width: 31.25em) {
+				main section h1 {
+					font-size: 150px;
+					top: -6rem;
+				}
+
+				h2 {
+					font-size: 25px;
+				}
+				h4 {
+					font-size: 12px;
+				}
+				section div a {
+					font-size: 14px;
+					padding: 8px 16px;
+				}
+			}
+		</style>
 	</head>
 	<body>
 		<main>
-			<h1>
-				<a
-					href="https://artindia.critstudies.calarts.edu/namaste.pdf"
-					target="_blank"
-					title="Learn more about 'Namaste'"
-				>
-					Namaste.
-				</a>
-			</h1>
-			<h2>
-				My name is
-				<a
-					href="https://sunilshastry.com/me.jpg"
-					style="color: black"
-					title="View Sunil's Photograph"
-					>Sunil Shastry</a
-				>
-			</h2>
-			<p>
-				I am an undergraduate student at the
-				<a
-					href="https://www.usask.ca/"
-					target="_blank"
-					title="University of Saskatchewan Official Website"
-				>
-					University of Saskatchewan
-				</a>
-				, Canada, currently pursuing a Bachelor of Science degree with a major
-				in Computer Science and a minor in Theoretical Mathematics. My academic
-				interests within computer science primarily focus on
-				<a
-					href="https://en.wikipedia.org/wiki/Web_development"
-					target="_blank"
-					title="Web Development (Wikipedia)"
-				>
-					Web Development
-				</a>
-				and
-				<a
-					href="https://www.spiceworks.com/tech/artificial-intelligence/articles/what-is-hci/"
-					target="_blank"
-					title="What is Human-Computer Interaction (HCI)?"
-				>
-					Human-Computer Interaction (HCI)
-				</a>
-				, where I explore the design, functionality, and user experience aspects
-				of digital systems. In the field of mathematics, I am particularly drawn
-				to
-				<a
-					href="https://www.britannica.com/science/linear-algebra"
-					target="_blank"
-					title="Linear Algebra (Britannica)"
-				>
-					Linear Algebra
-				</a>
-				and
-				<a
-					href="https://en.wikipedia.org/wiki/Discrete_mathematics"
-					target="_blank"
-					title="Discrete Mathematics (Wikipedia)"
-				>
-					Discrete Mathematics
-				</a>
-				, as they complement and provide foundational insights into abstract
-				structures, logical reasoning, and computational applications.
-				<a
-					href="https://sunilshastry.com/resume.pdf"
-					title="Sunil Shastry's Resume"
-					><em>View resume &rarr;</em></a
-				>
-			</p>
-
-			<p>
-				Outside of programming and university, I enjoy the activities of
-				cooking, hiking, and watching movies (mostly thriller).
-				<em
-					>Feel free to connect with me on LinkedIn or view my open-source work
-					and projects on GitHub.</em
-				>
-			</p>
-
-			<ul>
-				<li>
-					<a
-						href="https://www.linkedin.com/in/sunilshastry/"
-						target="_blank"
-						title="Sunil Shastry's LinkedIn"
-					>
-						LinkedIn
-					</a>
-				</li>
-				<li>
-					<a
-						href="https://github.com/sunillshastry"
-						target="_blank"
-						title="Sunil Shastry's GitHub"
-					>
-						GitHub
-					</a>
-				</li>
-			</ul>
+			<section>
+				<h1>404</h1>
+				<h2>Sorry, you've reached an unexpected route!</h2>
+				<h4>Navigate accordingly using the links below</h4>
+				<div>
+					<a href="https://sunilshastry.com">Home</a>
+					<a href="https://sunilshastry.com/resume.pdf">Resume</a>
+				</div>
+			</section>
 		</main>
 	</body>
 </html>
