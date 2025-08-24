@@ -95,6 +95,20 @@ a:hover::before {
 	height: 35%;
 }
 
+div p {
+	font-size: 1.4rem;
+	margin: 0;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+	padding-top: 0.8rem;
+	color: #888888;
+}
+
+div p span {
+	position: relative;
+	font-style: italic;
+	color: #000000;
+}
+
 @media only screen and (max-width: 75em) {
 	p {
 		width: 80%;
