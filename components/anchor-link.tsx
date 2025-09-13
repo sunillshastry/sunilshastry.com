@@ -14,7 +14,7 @@ export default function AnchorLink({
 	return (
 		<Link
 			href={href as string}
-			className={`relative inline-block p-0 text-white ${className}`}
+			className={`relative inline-block p-0 text-white text-shadow-md text-shadow-white/25 ${className}`}
 			target="_blank"
 			{...defaultProps}
 		>
