@@ -75,7 +75,7 @@ export default function Page() {
 					<Link
 						href="/resume.pdf"
 						className="relative inline-flex items-center justify-start gap-x-1 p-0 text-white"
-						title="View Sunil Shastry's Resume"
+						title="View Sunil's Resume"
 					>
 						<span>View resume</span>
 						<span>
@@ -99,7 +99,7 @@ export default function Page() {
 					<AnchorLink
 						href="https://www.linkedin.com/in/sunilshastry/"
 						className="pb-1"
-						title="Sunil Shastry's LinkedIn"
+						title="Sunil's LinkedIn"
 					>
 						LinkedIn
 					</AnchorLink>
@@ -108,7 +108,7 @@ export default function Page() {
 					<AnchorLink
 						href="https://github.com/sunillshastry/"
 						className="pb-1"
-						title="Sunil Shastry's GitHub"
+						title="Sunil's GitHub"
 					>
 						GitHub
 					</AnchorLink>
