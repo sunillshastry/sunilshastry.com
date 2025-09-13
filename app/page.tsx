@@ -23,7 +23,7 @@ export default function Page() {
 								height={60}
 								quality={75}
 								title="Sunil Shastry"
-								className="rounded-full opacity-60 transition ease-in hover:scale-105 hover:opacity-100"
+								className="rounded-full opacity-60 transition ease-in hover:scale-105 hover:opacity-100 max-lg:opacity-75"
 							/>
 						</Link>
 					</div>

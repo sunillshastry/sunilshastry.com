@@ -8,7 +8,7 @@
 }
 
 @layer components {
-	a::after {
+	a.anchor-link::after {
 		content: '';
 		position: absolute;
 		width: 0;
@@ -20,7 +20,7 @@
 		transition: all 0.25s ease;
 	}
 
-	a:hover::after {
+	a.anchor-link:hover::after {
 		width: 100%;
 	}
 
