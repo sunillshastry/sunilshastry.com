@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import Script from 'next/script';
 
 const inter = Inter({
 	subsets: ['latin'],
@@ -51,6 +52,10 @@ export const metadata: Metadata = {
 			follow: true,
 		},
 	},
+
+	other: {
+		'msvalidate.01': 'E8950B7B3E09D11CE36423531BD7F526',
+	},
 };
 
 export default function RootLayout({
@@ -63,6 +68,11 @@ export default function RootLayout({
 			<body
 				className={`${inter.variable} ${inter.className} antialiased selection:bg-white selection:text-black`}
 			>
+				<Script
+					defer
+					src="https://cloud.umami.is/script.js"
+					data-website-id="68a3055d-eebf-4dc3-8068-6d39a6c096de"
+				/>
 				<main className="min-h-screen bg-black pr-8 pl-12 text-gray-300 max-lg:pr-5 max-lg:pl-8">
 					{children}
 				</main>
