@@ -75,7 +75,7 @@ export default function Page() {
 					structures, logical reasoning, and computational applications.{' '}
 					<Link
 						href="/resume.pdf"
-						className="relative inline-flex items-center justify-start gap-x-1 p-0 text-white"
+						className="anchor-link relative inline-flex items-center justify-start gap-x-1 p-0 text-white"
 						title="View Sunil's Resume"
 					>
 						<span>View resume</span>
