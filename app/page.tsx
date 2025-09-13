@@ -9,7 +9,7 @@ export default function Page() {
 		<section>
 			<div className="pt-28 max-lg:pt-20">
 				<h2 className="linear-text text-4xl font-extrabold">Namaste,</h2>
-				<div className="flex items-center justify-start gap-x-2 max-lg:flex-col max-lg:items-start max-lg:gap-y-2">
+				<div className="flex items-center justify-start gap-x-2 max-lg:flex-col max-lg:items-start max-lg:gap-y-5">
 					<h1 className="linear-text mt-4 py-1 text-6xl font-black max-lg:text-5xl">
 						My name is Sunil Shastry.
 					</h1>
