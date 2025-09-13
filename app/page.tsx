@@ -10,7 +10,11 @@ export default function Page() {
 				<h2 className="linear-text text-4xl font-extrabold">Namaste,</h2>
 				<h1 className="linear-text mt-4 text-6xl font-black max-lg:text-5xl">
 					My name is{' '}
-					<Link href="/me.jpg" className="transition hover:text-gray-200">
+					<Link
+						href="/me.jpg"
+						className="transition hover:text-gray-200"
+						title="Sunil Shastry's Photo"
+					>
 						Sunil Shastry
 					</Link>
 					.
@@ -20,27 +24,42 @@ export default function Page() {
 			<div className="mt-12 text-base leading-10 text-gray-400">
 				<Paragraph>
 					I am an undergraduate student at the{' '}
-					<AnchorLink href="https://usask.ca/">
+					<AnchorLink
+						href="https://usask.ca/"
+						title="University of Saskatchewan official website"
+					>
 						University of Saskatchewan
 					</AnchorLink>
 					, Canada, currently pursuing a Bachelor of Science degree with a major
 					in Computer Science and a minor in Theoretical Mathematics. My
 					academic interests within computer science primarily focus on{' '}
-					<AnchorLink href="https://en.wikipedia.org/wiki/Web_development">
+					<AnchorLink
+						href="https://en.wikipedia.org/wiki/Web_development"
+						title="Read more about web development"
+					>
 						Web Development
 					</AnchorLink>{' '}
 					and{' '}
-					<AnchorLink href="https://www.spiceworks.com/tech/artificial-intelligence/articles/what-is-hci/">
+					<AnchorLink
+						href="https://www.spiceworks.com/tech/artificial-intelligence/articles/what-is-hci/"
+						title="Read more about HCI"
+					>
 						Human-Computer Interaction (HCI)
 					</AnchorLink>{' '}
 					, where I explore the design, functionality, and user experience
 					aspects of digital systems. In the field of mathematics, I am
 					particularly drawn to{' '}
-					<AnchorLink href="https://www.britannica.com/science/linear-algebra">
+					<AnchorLink
+						href="https://www.britannica.com/science/linear-algebra"
+						title="Read more about Linear Algebra"
+					>
 						Linear Algebra
 					</AnchorLink>{' '}
 					and{' '}
-					<AnchorLink href="https://en.wikipedia.org/wiki/Discrete_mathematics">
+					<AnchorLink
+						href="https://en.wikipedia.org/wiki/Discrete_mathematics"
+						title="Read more about Discrete Mathematics"
+					>
 						Discrete Mathematics
 					</AnchorLink>
 					, as they complement and provide foundational insights into abstract
@@ -48,6 +67,7 @@ export default function Page() {
 					<Link
 						href="/resume.pdf"
 						className="relative inline-flex items-center justify-start gap-x-1 p-0 text-white"
+						title="View Sunil Shastry's Resume"
 					>
 						<span>View resume</span>
 						<span>
@@ -71,12 +91,17 @@ export default function Page() {
 					<AnchorLink
 						href="https://www.linkedin.com/in/sunilshastry/"
 						className="pb-1"
+						title="Sunil Shastry's LinkedIn"
 					>
 						LinkedIn
 					</AnchorLink>
 				</li>
 				<li>
-					<AnchorLink href="https://github.com/sunillshastry/" className="pb-1">
+					<AnchorLink
+						href="https://github.com/sunillshastry/"
+						className="pb-1"
+						title="Sunil Shastry's GitHub"
+					>
 						GitHub
 					</AnchorLink>
 				</li>
@@ -84,7 +109,9 @@ export default function Page() {
 
 			<p className="mt-6 w-[50%] border-t border-white/25 pt-4 pb-4 text-gray-400 max-lg:w-full max-lg:text-center">
 				Or reach me out by email at{' '}
-				<span className="text-white">contact [at] sunilshastry [dot] com</span>
+				<span className="text-white" title="contact@sunilshastry.com">
+					contact [at] sunilshastry [dot] com
+				</span>
 			</p>
 		</section>
 	);
