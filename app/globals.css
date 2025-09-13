@@ -1,6 +1,33 @@
 @import 'tailwindcss';
 
-.font-inter {
-	font-family: var(--font-inter);
-	font-style: normal;
+@layer base {
+	.font-inter {
+		font-family: var(--font-inter);
+		font-style: normal;
+	}
+}
+
+@layer components {
+	a::after {
+		content: '';
+		position: absolute;
+		width: 0;
+		height: 2px;
+		border-radius: 6px;
+		background-color: white;
+		left: 0;
+		bottom: 0;
+		transition: all 0.25s ease;
+	}
+
+	a:hover::after {
+		width: 100%;
+	}
+
+	.linear-text {
+		background-image: linear-gradient(to bottom, #ffffff, #555);
+		background-clip: text;
+		-webkit-background-clip: text;
+		color: transparent;
+	}
 }
