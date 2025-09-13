@@ -1,5 +1,6 @@
 import AnchorLink from '@/components/anchor-link';
 import Paragraph from '@/components/paragraph';
+import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Page() {
@@ -46,9 +47,12 @@ export default function Page() {
 					structures, logical reasoning, and computational applications.{' '}
 					<Link
 						href="/resume.pdf"
-						className="relative inline-block p-0 text-white"
+						className="relative inline-flex items-center justify-start gap-x-1 p-0 text-white"
 					>
-						View resume →
+						<span>View resume</span>
+						<span>
+							<ArrowRight size={14} />
+						</span>
 					</Link>
 				</Paragraph>
 
