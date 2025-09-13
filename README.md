@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sunil Shastry
 
-## Getting Started
+[![Netlify Status](https://api.netlify.com/api/v1/badges/75a8326a-2d92-4226-9157-ae3bb777879e/deploy-status)](https://app.netlify.com/projects/sunilshastry/deploys)
+![Website Status](https://img.shields.io/website?url=https://sunilshastry.com)
+![License](https://img.shields.io/github/license/sunillshastry/sunilshastry.com)
 
-First, run the development server:
+![X (formerly Twitter) Follow](https://camo.githubusercontent.com/381432911f7d9a8e6b22d08dcdc733e542832b3c74f12f75774a8c44504bd3ac/68747470733a2f2f696d672e736869656c64732e696f2f747769747465722f666f6c6c6f772f73756e696c6c736861737472793f)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+[https://www.sunilshastry.com](https://www.sunilshastry.com)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+_Welcome to the public GitHub repository of my personal website. Built with HTML and CSS._
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Local Build
 
-## Learn More
+1. Clone the GitHub repository.
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   git clone git@github.com:sunillshastry/sunilshastry.com.git
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Manually `cd` into directory/repository, simply open the `index.html` entry source file from the directory.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   cd sunilshastry.com
+   open index.html
+   ```
 
-## Deploy on Vercel
+## Color Scheme
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Any and all colors used within the site is displayed here; Color changes made to the website will also alter this file to display the latest color scheme that is used. No color scheme history is maintained.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- References:
+  - [Color Hunt](https://colorhunt.co/): For base and standalone colors.
+  - [Coolors](https://coolors.co/gradients): For great and colorful web gradients.
+
+#### Scheme
+
+- White: #FFFFFF <div style="width: 30px; height: 30px; background-color: #ffffff; border: 1px solid gray; display: inline-block; margin-left: 15px;"></div>
+- Black (Text): #000000 <div style="width: 30px; height: 30px; background-color: #000000; border: 1px solid gray; display: inline-block; margin-left: 15px;"></div>
+- Grey (background): #EEEEEE <div style="width: 30px; height: 30px; background-color: #EEEEEE; border: 1px solid gray; display: inline-block; margin-left: 15px;"></div>
+- Link(s): #666666 <div style="width: 30px; height: 30px; background-color: #666666; border: 1px solid gray; display: inline-block; margin-left: 15px;"></div>
+- Link Highlight (Gradient 1): #d397fa <div style="width: 30px; height: 30px; background-color: #d397fa; border: 1px solid gray; display: inline-block; margin-left: 15px;"></div>
+- Link Highlight (Gradient 2): #8364e8 <div style="width: 30px; height: 30px; background-color: #8364e8; border: 1px solid gray; display: inline-block; margin-left: 15px;"></div>
+- Favicon (SVG Fill): #A6CDC6 <div style="width: 30px; height: 30px; background-color: #A6CDC6; border: 1px solid gray; display: inline-block; margin-left: 15px;"></div>
+- Favicon (Text): #D1F8EF <div style="width: 30px; height: 30px; background-color: #D1F8EF; border: 1px solid gray; display: inline-block; margin-left: 15px;"></div>
+
+## Font Face
+
+The website uses the [Inter](https://rsms.me/inter/) font-face. Inter is open-source font-face, available for commercial and non-commercial projects. The website uses Inter via Google Fonts, which can be viewed [here](https://fonts.google.com/specimen/Inter).
+
+## Sitemap
+
+The website's sitemap can be viewed [here](https://www.sunilshastry.com/sitemap.xml).
+
+## Contributions
+
+Project will not be accepting any contributions or PRs.
+
+## Hosting
+
+Hosted on [Netlify](https://netlify.app/), with Netlify's automated CI/CD workflow ([View more](https://www.netlify.com/platform/core/build/)).
+
+## License
+
+Licensed under the [GNU General Public License v3.0](https://github.com/sunillshastry/sunilshastry.com/blob/master/LICENSE).
