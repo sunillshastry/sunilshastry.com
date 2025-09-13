@@ -75,7 +75,7 @@ export default function Page() {
 					structures, logical reasoning, and computational applications.{' '}
 					<Link
 						href="/resume.pdf"
-						className="anchor-link relative inline-flex items-center justify-start gap-x-1 p-0 text-white"
+						className="relative inline-flex items-center justify-start gap-x-1 p-0 text-white"
 						title="View Sunil's Resume"
 					>
 						<span>View resume</span>
@@ -116,7 +116,7 @@ export default function Page() {
 				</li>
 			</ul>
 
-			<p className="mt-6 w-[50%] border-t border-white/25 pt-4 pb-4 text-gray-400 max-lg:w-full max-lg:text-center">
+			<p className="mt-6 w-[50%] border-t border-white/25 pt-4 pb-4 text-gray-400 max-lg:w-full max-lg:pb-12">
 				Or reach me out by email at{' '}
 				<span className="text-white" title="contact@sunilshastry.com">
 					contact [at] sunilshastry [dot] com
