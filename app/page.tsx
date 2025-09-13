@@ -1,6 +1,7 @@
 import AnchorLink from '@/components/anchor-link';
 import Paragraph from '@/components/paragraph';
 import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Page() {
@@ -8,17 +9,25 @@ export default function Page() {
 		<section>
 			<div className="pt-28 max-lg:pt-20">
 				<h2 className="linear-text text-4xl font-extrabold">Namaste,</h2>
-				<h1 className="linear-text mt-4 text-6xl font-black max-lg:text-5xl">
-					My name is{' '}
-					<Link
-						href="/me.jpg"
-						className="transition hover:text-gray-200"
-						title="Sunil Shastry's Photo"
-					>
-						Sunil Shastry
-					</Link>
-					.
-				</h1>
+				<div className="flex items-center justify-start gap-x-2 max-lg:flex-col max-lg:items-start max-lg:gap-y-5">
+					<h1 className="linear-text mt-4 py-1 text-6xl font-black max-lg:text-5xl">
+						My name is Sunil Shastry.
+					</h1>
+
+					<div>
+						<Link href="/me.jpg" title="View Sunil's Photo">
+							<Image
+								src="/me.jpg"
+								alt="Sunil's Photo"
+								width={60}
+								height={60}
+								quality={75}
+								title="Sunil Shastry"
+								className="rounded-full opacity-60 transition ease-in hover:scale-105 hover:opacity-100"
+							/>
+						</Link>
+					</div>
+				</div>
 			</div>
 
 			<div className="mt-12 text-base leading-10 text-gray-400">
@@ -67,7 +76,7 @@ export default function Page() {
 					<Link
 						href="/resume.pdf"
 						className="relative inline-flex items-center justify-start gap-x-1 p-0 text-white"
-						title="View Sunil Shastry's Resume"
+						title="View Sunil's Resume"
 					>
 						<span>View resume</span>
 						<span>
@@ -91,7 +100,7 @@ export default function Page() {
 					<AnchorLink
 						href="https://www.linkedin.com/in/sunilshastry/"
 						className="pb-1"
-						title="Sunil Shastry's LinkedIn"
+						title="Sunil's LinkedIn"
 					>
 						LinkedIn
 					</AnchorLink>
@@ -100,7 +109,7 @@ export default function Page() {
 					<AnchorLink
 						href="https://github.com/sunillshastry/"
 						className="pb-1"
-						title="Sunil Shastry's GitHub"
+						title="Sunil's GitHub"
 					>
 						GitHub
 					</AnchorLink>
