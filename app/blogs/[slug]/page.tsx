@@ -6,6 +6,7 @@ import mdxRemoteComponents from '@/mdx-components';
 import BlogTitle from '@/components/blog-title';
 import { BlogMeta } from '@/interfaces/BlogMeta';
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 interface FunctionProps {
 	params: Promise<{ slug: string }>;
@@ -29,7 +30,13 @@ export async function generateMetadata({
 export default async function Page({ params }: FunctionProps) {
 	const { slug } = await params;
 
-	const { content, data } = getPostBySlug(slug);
+	let content, data;
+	try {
+		content = getPostBySlug(slug)?.content;
+		data = getPostBySlug(slug)?.data;
+	} catch {
+		return notFound();
+	}
 
 	return (
 		<section>
