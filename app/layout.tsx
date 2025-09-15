@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Script from 'next/script';
+import CoreProviders from '@/providers/CoreProviders';
+import Main from '@/components/main';
+import ThemeSwitch from '@/components/theme-switch';
 
 const inter = Inter({
 	subsets: ['latin'],
@@ -61,22 +64,23 @@ export const metadata: Metadata = {
 export default function RootLayout({
 	children,
 }: Readonly<{
-	children: React.ReactNode;
+	children: Readonly<React.ReactNode>;
 }>) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body
-				className={`${inter.variable} ${inter.className} antialiased selection:bg-white selection:text-black`}
-			>
-				<Script
-					defer
-					src="https://cloud.umami.is/script.js"
-					data-website-id="68a3055d-eebf-4dc3-8068-6d39a6c096de"
-				/>
-				<main className="min-h-screen bg-black pr-8 pl-12 text-gray-300 max-lg:pr-5 max-lg:pl-8">
-					{children}
-				</main>
-			</body>
+			<CoreProviders>
+				<body
+					className={`${inter.variable} ${inter.className} relative antialiased`}
+				>
+					<Script
+						defer
+						src="https://cloud.umami.is/script.js"
+						data-website-id="68a3055d-eebf-4dc3-8068-6d39a6c096de"
+					/>
+					<ThemeSwitch />
+					<Main>{children}</Main>
+				</body>
+			</CoreProviders>
 		</html>
 	);
 }
