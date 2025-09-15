@@ -133,7 +133,9 @@ export default function Page() {
 				</li>
 			</ul>
 
-			<p className="mt-6 w-[50%] border-t border-white/25 pt-4 pb-4 text-gray-400 max-lg:w-full max-lg:pb-12">
+			<p
+				className={`mt-6 w-[50%] border-t ${theme === 'dark' ? 'border-white/25' : 'border-black/25'} pt-4 pb-4 text-gray-400 max-lg:w-full max-lg:pb-12`}
+			>
 				Or reach me out by email at{' '}
 				<span
 					className={`${theme == 'dark' ? 'text-white' : 'text-black'}`}
