@@ -10,45 +10,66 @@
 
 ---
 
-_Welcome to the public GitHub repository of my personal website. Built with HTML and CSS._
+_Welcome to the public GitHub repository of my personal website. Built with Next.js, with TypeScript integration and TailwindCSS for styling._
 
-## Local Build
+## Local Setup
 
-1. Clone the GitHub repository.
+1. Make sure `Node` (minimum v20) is installed on your system. You can install it for your device from the [Official Node](https://nodejs.org/) website. Alternatively, you can install it via [Homebrew](https://formulae.brew.sh/formula/node).
+
+2. You can confirm if the `Node` installation was successful by running the following command on your terminal. As long as it starts with "v20" you are ready for the next step.
+
+   ```bash
+   node --version
+   ```
+
+3. Clone the project, and navigate into the directory.
 
    ```bash
    git clone git@github.com:sunillshastry/sunilshastry.com.git
    ```
 
-2. Manually `cd` into directory/repository, simply open the `index.html` entry source file from the directory.
-
    ```bash
    cd sunilshastry.com
-   open index.html
    ```
 
-## Color Scheme
+4. To ensure the project has its dependencies installed, run the following command in the root directory, for Node (via `npm`) to fetch and download all package dependencies
 
-Any and all colors used within the site is displayed here; Color changes made to the website will also alter this file to display the latest color scheme that is used. No color scheme history is maintained.
+   ```bash
+   npm install
+   ```
 
-- References:
-  - [Color Hunt](https://colorhunt.co/): For base and standalone colors.
-  - [Coolors](https://coolors.co/gradients): For great and colorful web gradients.
+5. Upon successfully installing the project's dependencies, you should not see a `node_modules/` directory in the root folder. If you do not see this, you have not installed the dependencies correctly. In the unlikely event that `npm` failed to install the dependencies, refer to this [Stack Overflow](https://stackoverflow.com/questions/21250849/npm-install-doesnt-create-node-modules-directory) exchange for helpful tips.
 
-#### Scheme
+6. With the `node_modules` directory installed correctly, you can now run the following command to spin up a local development server running the project by simply running the following command:
 
-- White: #FFFFFF <div style="width: 30px; height: 30px; background-color: #ffffff; border: 1px solid gray; display: inline-block; margin-left: 15px;"></div>
-- Black (Text): #000000 <div style="width: 30px; height: 30px; background-color: #000000; border: 1px solid gray; display: inline-block; margin-left: 15px;"></div>
-- Grey (background): #EEEEEE <div style="width: 30px; height: 30px; background-color: #EEEEEE; border: 1px solid gray; display: inline-block; margin-left: 15px;"></div>
-- Link(s): #666666 <div style="width: 30px; height: 30px; background-color: #666666; border: 1px solid gray; display: inline-block; margin-left: 15px;"></div>
-- Link Highlight (Gradient 1): #d397fa <div style="width: 30px; height: 30px; background-color: #d397fa; border: 1px solid gray; display: inline-block; margin-left: 15px;"></div>
-- Link Highlight (Gradient 2): #8364e8 <div style="width: 30px; height: 30px; background-color: #8364e8; border: 1px solid gray; display: inline-block; margin-left: 15px;"></div>
-- Favicon (SVG Fill): #A6CDC6 <div style="width: 30px; height: 30px; background-color: #A6CDC6; border: 1px solid gray; display: inline-block; margin-left: 15px;"></div>
-- Favicon (Text): #D1F8EF <div style="width: 30px; height: 30px; background-color: #D1F8EF; border: 1px solid gray; display: inline-block; margin-left: 15px;"></div>
+   ```bash
+   npm run dev
+   ```
+
+7. Alternatively, you can mimic a production site locally with the following commands:
+
+   ```bash
+   npm run build # This will create a "production" build as .next/ folder
+   ```
+
+   ```bash
+   npm run start # Starts a server using the production build
+   ```
+
+8. You can now access and view the running project on `localhost` at `http://localhost:3000`.
 
 ## Font Face
 
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load the font face.
+
 The website uses the [Inter](https://rsms.me/inter/) font-face. Inter is open-source font-face, available for commercial and non-commercial projects. The website uses Inter via Google Fonts, which can be viewed [here](https://fonts.google.com/specimen/Inter).
+
+## Primary Dependencies
+
+- Core: Next.js, React, TypeScript.
+- Styling: TailwindCSS.
+- Icons: Lucide React.
+- Formatting: Prettier and eslint.
 
 ## Sitemap
 
