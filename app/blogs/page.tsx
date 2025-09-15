@@ -1,3 +1,4 @@
+import NoBlogPosts from '@/components/no-blog-posts';
 import { getAllPosts } from '@/lib/mdx';
 import getFormattedDate from '@/utils/get-formatted-date';
 import getFormattedMonth from '@/utils/get-formatted-month';
@@ -12,6 +13,11 @@ export default function Page() {
 			new Date(b?.date as string).getTime() -
 			new Date(a?.date as string).getTime()
 	);
+
+	if (blogs.length === 0) {
+		return <NoBlogPosts />;
+	}
+
 	return (
 		<>
 			<div className="mt-2">
