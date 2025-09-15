@@ -20,12 +20,27 @@
 		transition: all 0.25s ease;
 	}
 
+	a.anchor-link-light::after {
+		background-color: black;
+	}
+
+	a.anchor-link-dark::after {
+		background-color: white;
+	}
+
 	a.anchor-link:hover::after {
 		width: 100%;
 	}
 
 	.linear-text {
 		background-image: linear-gradient(to bottom, #ffffff, #555);
+		background-clip: text;
+		-webkit-background-clip: text;
+		color: transparent;
+	}
+
+	.linear-text-light {
+		background-image: linear-gradient(to bottom, #777777, #000);
 		background-clip: text;
 		-webkit-background-clip: text;
 		color: transparent;

@@ -11,7 +11,7 @@ export default function Paragraph({
 }: FunctionProps) {
 	return (
 		<p
-			className={`text-base leading-10 text-gray-400 ${className}`}
+			className={`text-base leading-10 text-inherit ${className}`}
 			{...defaultProps}
 		>
 			{children}
