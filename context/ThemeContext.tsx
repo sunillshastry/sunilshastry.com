@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 interface ThemeContext {
 	theme: 'dark' | 'light';
@@ -16,16 +16,22 @@ interface FunctionProps {
 
 export default function ThemeContextProvider({ children }: FunctionProps) {
 	type ThemeState = 'light' | 'dark';
-	const systemSettingsTheme = window.matchMedia('(prefers-color-scheme: dark)')
-		.matches
-		? 'dark'
-		: 'light';
+	const [theme, setTheme] = useState<ThemeState>('dark');
 
-	const storageOption: ThemeState =
-		(localStorage.getItem('site-theme') as ThemeState) ??
-		(systemSettingsTheme as ThemeState);
+	// Check for system settings as a useEffect side effect
+	useEffect(function () {
+		const systemSettingsTheme = window.matchMedia(
+			'(prefers-color-scheme: dark)'
+		).matches
+			? 'dark'
+			: 'light';
 
-	const [theme, setTheme] = useState<ThemeState>(storageOption);
+		const storageOption: ThemeState =
+			(localStorage.getItem('site-theme') as ThemeState) ??
+			(systemSettingsTheme as ThemeState);
+
+		setTheme(storageOption);
+	}, []);
 
 	function lightSwitch() {
 		setTheme('light');
