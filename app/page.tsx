@@ -103,7 +103,12 @@ export default function Page() {
 				</Paragraph>
 
 				<Paragraph className="mt-4">
-					Outside of programming and university, I enjoy the activities of
+					I write blogs relating to technology, mathematics and (sometimes)
+					personal topics, which you can view and read them on my{' '}
+					<AnchorLink href="/blogs" title="Blogs" target="_self">
+						blog
+					</AnchorLink>{' '}
+					page. Outside of programming and university, I enjoy the activities of
 					cooking, hiking, and watching movies (mostly thriller).{' '}
 					<em>
 						Feel free to connect with me on LinkedIn or view my open-source work
@@ -129,6 +134,16 @@ export default function Page() {
 						title="Sunil's GitHub"
 					>
 						GitHub
+					</AnchorLink>
+				</li>
+				<li>
+					<AnchorLink
+						href="/blogs"
+						className="pb-1"
+						title="Blogs"
+						target="_self"
+					>
+						Blog
 					</AnchorLink>
 				</li>
 			</ul>
