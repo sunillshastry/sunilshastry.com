@@ -1,27 +1,42 @@
+'use client';
+
 import AnchorLink from '@/components/anchor-link';
 import Paragraph from '@/components/paragraph';
+import { useTheme } from '@/context/ThemeContext';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Page() {
+	const { theme } = useTheme();
+
 	return (
 		<section>
 			<div className="pt-28 max-lg:pt-20">
-				<h2 className="linear-text text-4xl font-extrabold">Namaste,</h2>
+				<h2
+					className={`${theme == 'dark' ? 'linear-text' : 'linear-text-light'} text-4xl font-extrabold`}
+				>
+					Namaste,
+				</h2>
 				<div className="flex items-center justify-start gap-x-2 max-lg:flex-col max-lg:items-start max-lg:gap-y-5">
-					<h1 className="linear-text mt-4 py-1 text-6xl font-black max-lg:text-5xl">
+					<h1
+						className={`${theme == 'dark' ? 'linear-text' : 'linear-text-light'} mt-4 py-1 text-6xl font-black max-lg:text-5xl`}
+					>
 						My name is Sunil Shastry.
 					</h1>
 
 					<div>
-						<Link href="/me.jpg" title="View Sunil's Photo">
+						<Link
+							href="/me.jpg"
+							title="View Sunil's Photo"
+							className="relative inline-block size-16"
+						>
 							<Image
 								src="/me.jpg"
 								alt="Sunil's Photo"
-								width={60}
-								height={60}
 								quality={75}
+								fill={true}
+								sizes="64px"
 								title="Sunil Shastry"
 								className="rounded-full opacity-60 transition ease-in hover:scale-105 hover:opacity-100 max-lg:opacity-75"
 							/>
@@ -30,7 +45,9 @@ export default function Page() {
 				</div>
 			</div>
 
-			<div className="mt-12 text-base leading-10 text-gray-400">
+			<div
+				className={`mt-12 text-base leading-10 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}
+			>
 				<Paragraph>
 					I am an undergraduate student at the{' '}
 					<AnchorLink
@@ -75,7 +92,7 @@ export default function Page() {
 					structures, logical reasoning, and computational applications.{' '}
 					<Link
 						href="/resume.pdf"
-						className="anchor-link relative inline-flex items-center justify-start gap-x-1 p-0 text-white"
+						className={`${theme === 'dark' ? 'anchor-link-dark text-white' : 'anchor-link-light text-black'} anchor-link relative inline-flex items-center justify-start gap-x-1 p-0`}
 						title="View Sunil's Resume"
 					>
 						<span>View resume</span>
@@ -118,7 +135,10 @@ export default function Page() {
 
 			<p className="mt-6 w-[50%] border-t border-white/25 pt-4 pb-4 text-gray-400 max-lg:w-full max-lg:pb-12">
 				Or reach me out by email at{' '}
-				<span className="text-white" title="contact@sunilshastry.com">
+				<span
+					className={`${theme == 'dark' ? 'text-white' : 'text-black'}`}
+					title="contact@sunilshastry.com"
+				>
 					contact [at] sunilshastry [dot] com
 				</span>
 			</p>
