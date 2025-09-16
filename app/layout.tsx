@@ -46,7 +46,14 @@ export const metadata: Metadata = {
 		locale: 'en_US',
 		type: 'website',
 	},
-
+	twitter: {
+		title: 'Sunil Shastry',
+		description:
+			'Sunil Shastry is an undergraduate student at the University of Saskatchewan majoring in Computer Science and minoring in Theoretical Mathematics. His primary expertise lies in Human-Computer Interaction and Web Development',
+		card: 'summary_large_image',
+		creator: '@sunillshastry',
+		images: ['https://sunilshastry.com/me.jpg'],
+	},
 	robots: {
 		index: true,
 		follow: true,
