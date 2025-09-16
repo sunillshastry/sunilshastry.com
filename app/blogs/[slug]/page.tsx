@@ -20,10 +20,21 @@ export async function generateMetadata({
 	const { data } = getPostBySlug(slug);
 
 	const title = `${data?.title} | Sunil Shastry`;
+	const link = `https://sunilshastry.com/blogs/${data?.slug}`;
+
+	const ogImage = `http://localhost:3000/api/og?title=${data?.title}&subtitle=${data?.subtitle}&link=${link}`;
 
 	return {
 		title,
 		description: data?.description,
+		openGraph: {
+			images: [
+				{
+					url: ogImage,
+					alt: data?.title,
+				},
+			],
+		},
 	};
 }
 
