@@ -7,6 +7,7 @@ import BlogTitle from '@/components/blog-title';
 import { BlogMeta } from '@/interfaces/BlogMeta';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import ShareTab from '@/components/share-tab';
 
 interface FunctionProps {
 	params: Promise<{ slug: string }>;
@@ -22,7 +23,7 @@ export async function generateMetadata({
 	const title = `${data?.title} | Sunil Shastry`;
 	const link = `https://sunilshastry.com/blogs/${data?.slug}`;
 
-	const ogImage = `http://localhost:3000/api/og?title=${data?.title}&subtitle=${data?.subtitle}&link=${link}`;
+	const ogImage = `https://sunilshastry.com/api/og?title=${data?.title}&subtitle=${data?.subtitle}&link=${link}`;
 
 	return {
 		title,
@@ -34,6 +35,13 @@ export async function generateMetadata({
 					alt: data?.title,
 				},
 			],
+		},
+		twitter: {
+			card: 'summary_large_image',
+			title,
+			description: data?.description,
+			creator: '@sunillshastry',
+			images: [ogImage],
 		},
 	};
 }
@@ -64,6 +72,7 @@ export default async function Page({ params }: FunctionProps) {
 
 			<article className="mt-10">
 				<BlogTitle blog={data as BlogMeta} />
+				<ShareTab blog={data as BlogMeta} />
 
 				<div className="mt-8">
 					<MDXRemote
