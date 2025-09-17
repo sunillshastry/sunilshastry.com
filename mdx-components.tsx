@@ -1,4 +1,7 @@
 import { ComponentPropsWithoutRef } from 'react';
+import { CodeBlock } from './interfaces/CodeBlock';
+import checkCommentChar from './utils/check-comment-char';
+import CodeSnippet from './components/code-snippet';
 
 const mdxRemoteComponents = {
 	h1: (props: ComponentPropsWithoutRef<'h1'>) => (
@@ -49,6 +52,7 @@ const mdxRemoteComponents = {
 	code: (props: ComponentPropsWithoutRef<'code'>) => {
 		const language = props.className?.split('-')?.at(1);
 
+		// Inline code (without any real snippet)
 		if (!language) {
 			return (
 				<code
@@ -58,16 +62,47 @@ const mdxRemoteComponents = {
 			);
 		}
 
-		return (
-			<div className="relative my-5 overflow-auto rounded-sm border border-gray-400/25 p-4 text-sm shadow shadow-gray-400/25">
-				<label className="absolute top-2 right-2 inline-block font-mono text-xs">
-					{language}
-				</label>
+		let filename = '';
+		let code = '';
 
-				<code lang={language} {...props}>
-					{props.children}
-				</code>
-			</div>
+		if (checkCommentChar(props?.children as string)) {
+			if ((props?.children as string).startsWith('<!--')) {
+				// For HTML code block
+				// Remove first side
+				filename = (props?.children as string)
+					.split('\n')
+					.at(0)
+					?.slice(4)
+					.trim() as string;
+
+				filename = filename.slice(0, -3).trim();
+			} else {
+				// For other code block(s)
+				filename = (props?.children as string)
+					.split('\n')
+					.at(0)
+					?.slice(2)
+					.trim() as string;
+			}
+
+			// Retrieve the 'main' part of the code (without the first line - containing the file name)
+			code = (props?.children as string).split('\n').slice(1).join('\n');
+		}
+
+		const codeblock: CodeBlock[] = [
+			{
+				language: language as string,
+				filename: '',
+				code: code as string,
+			},
+		];
+
+		return (
+			<CodeSnippet
+				code={codeblock}
+				language={language as string}
+				filename={filename}
+			/>
 		);
 	},
 };
