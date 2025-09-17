@@ -355,6 +355,7 @@ export type CodeBlockFilenameProps = HTMLAttributes<HTMLDivElement> & {
 };
 
 export const CodeBlockFilename = ({
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	className,
 	icon,
 	value,
