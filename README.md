@@ -67,9 +67,10 @@ The website uses the [Inter](https://rsms.me/inter/) font-face. Inter is open-so
 ## Primary Dependencies
 
 - Core: Next.js, React, TypeScript.
-- Styling: TailwindCSS.
+- Styling: TailwindCSS, shadcn-ui.
+- Deployment: Netlify, GitHub CI/CD, Netlify CI/CD.
+- Formatting: Prettier, Husky, eslint and lint-staged.
 - Icons: Lucide React.
-- Formatting: Prettier and eslint.
 
 ## Sitemap
 
