@@ -8,10 +8,10 @@ const mdxRemoteComponents = {
 		<h1 className="my-3 text-xl font-bold" {...props} />
 	),
 	h2: (props: ComponentPropsWithoutRef<'h2'>) => (
-		<h2 className="my-2 text-lg font-bold" {...props} />
+		<h2 className="my-2 mt-10 text-lg font-bold" {...props} />
 	),
 	h3: (props: ComponentPropsWithoutRef<'h3'>) => (
-		<h3 className="my-2 text-lg font-bold" {...props} />
+		<h3 className="my-2 mt-6 text-lg font-bold" {...props} />
 	),
 	strong: (props: ComponentPropsWithoutRef<'strong'>) => (
 		<strong className="font-bold" {...props} />
