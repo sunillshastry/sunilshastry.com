@@ -84,7 +84,9 @@ export default function ShareTab({ blog }: FunctionProps) {
 						</button>
 					</TooltipTrigger>
 					<TooltipContent>
-						<p>{copied ? 'Copied!' : 'Copy link'}</p>
+						<p className="font-mono uppercase">
+							{copied ? 'Copied!' : 'Copy link'}
+						</p>
 					</TooltipContent>
 				</Tooltip>
 			</div>
