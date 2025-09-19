@@ -103,8 +103,9 @@ export default function Page() {
 				</Paragraph>
 
 				<Paragraph className="mt-4">
-					I write blogs relating to technology, mathematics and (sometimes)
-					personal topics, which you can view and read them on my{' '}
+					I write blogs (on this site and on Medium) relating to technology,
+					mathematics and (sometimes) personal topics, which you can view and
+					read them on my{' '}
 					<AnchorLink href="/blogs" title="Blogs" target="_self">
 						blog
 					</AnchorLink>{' '}
@@ -136,6 +137,17 @@ export default function Page() {
 						GitHub
 					</AnchorLink>
 				</li>
+
+				<li>
+					<AnchorLink
+						href="https://sunilshastry.medium.com/"
+						className="pb-1"
+						title="Medium"
+					>
+						Medium
+					</AnchorLink>
+				</li>
+
 				<li>
 					<AnchorLink
 						href="/blogs"
