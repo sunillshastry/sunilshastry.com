@@ -27,7 +27,11 @@ function CodeSnippet({ code, language, filename }: FunctionProps) {
 
 	return (
 		<>
-			<CodeBlock data={code} defaultValue={code[0].language}>
+			<CodeBlock
+				data={code}
+				defaultValue={code[0].language}
+				className="mt-6 mb-10"
+			>
 				<CodeBlockHeader className="flex items-center justify-between">
 					<h5 className="ml-2 text-xs text-gray-500">{filename as string}</h5>
 
