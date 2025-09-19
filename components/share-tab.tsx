@@ -78,6 +78,7 @@ export default function ShareTab({ blog }: FunctionProps) {
 								theme === 'dark' ? 'bg-white text-black' : 'bg-black text-white'
 							)}
 							onClick={copyBlogURL}
+							aria-label="Copy link"
 						>
 							{copied ? <Check size={16} /> : <Link size={16} />}
 						</button>
