@@ -33,6 +33,7 @@ export default function Page() {
 							href={`/blogs/${blog?.slug}`}
 							key={blog?.slug}
 							title={blog?.title}
+							prefetch={true}
 						>
 							<div className="ease flex w-full items-center justify-between rounded-md p-4 transition hover:bg-gray-400/25 max-lg:flex-col max-lg:items-start">
 								<div className="flex items-center max-lg:flex-col max-lg:items-start">

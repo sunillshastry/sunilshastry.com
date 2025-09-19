@@ -1,0 +1,256 @@
+---
+slug: 'short-circuiting-in-javascript'
+title: 'Short-circuiting in JavaScript'
+subtitle: 'A cleaner and easy one-liner to conditionally check logic and type'
+date: '2025-09-19'
+duration: '14 minutes'
+description: 'Sunil Shastry writes about the different short-circuiting operators in JavaScript. Understanding and walking through its prerequisites, fundamentals and logical functionality. Sunil Shastry discusses how they benefit in modern codebases with simpler and smaller syntax, while providing numerous helpful examples.'
+---
+
+In JavaScript, we have terms and concepts known as "truthy" and "falsy" values. When understood and configured correctly, these values can come in handy during conditional checks. However, when set up incorrectly, they can be the source of some of the longest and frustrating debugging sessions. In short, these values can be thought of as “placeholders” for the default Boolean values `true` and `false`. The so-called “truthy” values render (or are treated) as `true` in a conditional check, whereas the “falsy” values likewise are treated as `false`. We will see how we can make use of these “truthy” and “falsy” values in JavaScript, and consequently, we will also encounter and see how the “short-circuiting” syntax in JavaScript works alongside these values.
+
+---
+
+## Old-school conditionals
+
+Traditionally speaking, in most programming languages, we work with conditionals through the use of Booleans - these can be any of - `if` statements, `if..else` statements, `switch` statements, or even the ternary operator, often making use of conditions to decide what piece or block of code to execute. These "conditions" are essentially Boolean values. For instance, from the provided code snippet below, we check if the `age` variable value is at least the number 18 or above:
+
+```javascript
+//
+
+const age = 24;
+
+if (age >= 18) {
+	console.log('User is eligible to vote');
+} else {
+	console.log('User must be at least 18 years of age to vote');
+}
+```
+
+Provided the `age` variable value is over the number 18, the first conditional check is `true`, and as a result, the block of statement(s) mentioned within is executed by the language compiler or interpreter. A similar structure is noticed in other conditional statements, such as `switch` statements and the ternary operator. Although there is absolutely nothing inherently wrong with this piece of code, and in fact, sometimes being explicit can be helpful in some cases; in JavaScript, we are offered a cleaner and shorter syntax to handle the exact same logic.
+
+Before we jump into the syntax itself, a fundamental concept worth understanding is the "truthy" and "falsy" values. We talked earlier about how these values act as a placeholder for the original Boolean values `true` and `false`. The following values mentioned below are the actual core truthy and falsy in the JavaScript language.
+
+```javascript
+//
+/* Falsy values */
+// The original false value
+false;
+
+// All variants of zero: positive, negative and BigInt zero.
+-0;
+0;
+0n;
+
+// An empty string value
+('');
+
+// Null and undefined primitives
+null;
+undefined;
+
+// The Nan (Not a Number) type
+NaN;
+
+/* Truthy values */
+// The original true value
+true;
+
+// Any nonzero number (positive, negative, BigInt)
+(10, 45, 100, 3.15, -4, 100n);
+
+// A non-empty string
+('Hello', 'i');
+
+// Object literal, arrays and object types.
+([], {}, new Date());
+```
+
+Since these values can serve as a substitute for Boolean values, using them in a conditional statement can be beneficial at times, here is an example of a code snippet that makes use of these values:
+
+```javascript
+//
+// Truthy values
+const a = 100;
+const b = 'monday';
+const c = [];
+const d = {};
+
+// All the console logs for variables - a, b, c and d are printed!
+if (a) {
+	console.log('It is a truthy value!');
+}
+
+if (b) {
+	console.log('It is a truthy value!');
+}
+
+if (c) {
+	console.log('It is a truthy value!');
+}
+
+if (d) {
+	console.log('It is a truthy value!');
+}
+
+// Falsy values
+const e = 0;
+const f = '';
+const g = null;
+const h = undefined;
+const i = NaN;
+
+// All the console.log in the 'else' block are printed as variables e, f, g, h and i are falsy values!
+if (e) console.log('It is a truthy value');
+else console.log('It is a falsy value'); // This line is executed
+
+if (f) console.log('It is a truthy value');
+else console.log('It is a falsy value'); // This line is executed
+
+if (g) console.log('It is a truthy value');
+else console.log('It is a falsy value'); // This line is executed
+
+if (h) console.log('It is a truthy value');
+else console.log('It is a falsy value'); // This line is executed
+
+if (i) console.log('It is a truthy value');
+else console.log('It is a falsy value'); // This line is executed
+```
+
+Upon knowing the different truthy and falsy values, and how these values work and affect the flow of statements, we can use the cleaner and much easier short-circuiting syntax provided to us in JavaScript. There are three such syntaxes, and they are - the logical AND operator (`&&`), the logical OR operator (`||`), and the null-coalescing operator (`??`). We will see how each of these works in different scenarios.
+
+## A taste of newer language features...
+
+The three short-circuiting syntaxes that were just mentioned, of which two of them - the logical AND operator (`&&`) and the logical OR operator (`||`) are more familiar than they seem. In fact, they work quite exactly like they would within a conditional statement. The logical AND (`&&`) takes two expressions side-by-side between the operator itself and returns (or computes) the second expression value based on the “truthiness” of the first expression. In short, from a given condition such as: `expression-01 && expression-2`; if `expression-1` value is `true` or “truthy” then the value `expression-2` is returned or resulted as the final value; on the other hand, if `expression-1` is an explicit `false` or a “falsy” value, then `expression-2` is never rendered or executed, the control flow stops at `expression-1`. Here is a simple set of code snippets going through how the logical AND operator (`&&`) works in a short-circuiting syntax in JavaScript.
+
+```javascript
+//
+const age = 24;
+const isOldEnough = age >= 18 && 'yes';
+
+console.log(isOldEnough); // prints 'yes' to the console.
+
+const age = 16;
+const isOldEnough = age >= 18 && 'yes';
+
+console.log(isOldEnough); // prints 'false' to the console.
+```
+
+From the example above, we see how a conditional check is made right inside a variable. The conditional check is to compare if the variable `age` is greater than or equal to 18, and in the case it is, a string value of `'yes'` is returned. The mechanics around the logical AND operator works something like - “check if the first value is true or a truthy value, if yes, then return the following value after the `&&` symbol”. This makes our code shorter and cleaner in some cases; if done without the short-circuiting syntax, this exact piece of code would probably take about 2-3 lines of code with `if` statements.
+
+Furthermore, we are not limited to just one conditional check using the logical AND (or any other short-circuiting operator syntax for that matter), we can append and chain multiple operators for each conditional check and have our “resultant” value as the last expression that will be returned should all the conditional checks be cleared as `true` or a truthy value. Here is an extended example from the previous code snippet displaying a chained conditional check.
+
+```javascript
+//
+const age = 24;
+const hasLicense = true;
+const ownsCar = true;
+
+const canUserDrive = age >= 18 && hasLicense && ownsCar && 'yes';
+
+console.log(canUserDrive); // prints 'yes' to the console.
+
+const age = 18;
+const hasLicense = false;
+const ownsCar = true;
+
+const canUserDrive = age >= 18 && hasLicense && ownsCar && 'yes';
+
+console.log(canUserDrive); // prints 'false' to the console
+```
+
+From the above code snippet, we can notice how we've chained multiple checks before “returning” or resulting in the final expression (in this case, the `'yes'` string value is our final expression value). Each conditional check is carefully matched and checked by the language, and in the case that all checks are either `true` or are a truthy value, the next condition is encountered and checked before reaching the last expression. In the case that any one of the conditions results in a `false` or falsy value, the conditional checks are immediately stopped and the default `false` value is returned as the final expression. This is informally more similar to a `ternary` operator or even an `if..else` block of statements. There is no official limit on the number of chains; however, it is recommended to keep as little chaining as possible within one statement, for better readability and clean code.
+
+The second short-circuiting syntax, similar to the logical AND operator (`&&`), is the logical OR operator (`||`). Unlike the logical AND operator, where each condition moves forward within the chain if the conditions are either a `true` or a truthy value, with the logical OR operator, the mechanism works the same way, except it checks if the prior variable is either a `true` or truthy value or `false` or falsy value. That is, it checks for both the “truthy” case and the “falsy” case of the condition and then executes the relevant piece of code. The syntax for this operator is similar to that of the logical AND, except that the logical OR operator symbol `||` is used between conditionals. The logical OR operator always checks if the left-most condition or expression is a truthy or falsy value, if it a truthy value - then the truthy value itself is returned as the resultant expression/value from the sequence, however, if it is a falsy value, then the next expression is checked with the same logic, until the last (right-most) value or expression is encountered, and in this case, the last (right-most) expression is eventually returned as the final value of this check.
+
+Here is an example encompassing this logic with the respective operator.
+
+```javascript
+//
+const someTruthyValue = 100;
+
+// since 'someTruthyValue' is truthy, this is returned/resulted as the final value.
+const someValue = someTruthyValue || 'some value';
+// Here, 'some value' is never encountered since the first expression was already true.
+
+console.log(someValue); // prints 100 to the console.
+
+const someFalsyValue = 0;
+const someFalsyValue2 = false;
+const someFalsyValue3 = '';
+
+const someValue =
+	someFalsyValue || someFalsyValue2 || someFalsyValue3 || 'some value';
+console.log(someValue);
+```
+
+As noticed with the two different cases above from our code snippet, in the first case, a check was made for the variable `someTruthyValue` if it resulted in a truthy value, and since `100` is a truthy value (all non-zero numbers are truthy values, as mentioned previously), the condition is true and this moves it to the next condition, and in our case the next condition seems to be the very last condition (the default expression result), which is returned as the final value, and consequently, the variable `someValue` holds the primitive string value `'some value'` as the result. On the other hand, in the second example within the same code snippet, we notice a chain of conditional checks (similar to our logical AND example earlier), except here, we have a handful of falsy expressions for each conditional check. As mentioned, the core difference between the logical AND and the logical OR operator is that the logical OR operator also checks if a value is falsy for each conditional check, and in the case that it is, it moves the conditional check to the next step, i.e., moves the condition to the right side (until the last default value). Similarly, in the second example, the condition checks start off with `someFalsyValue`, and since it is a falsy value, the next `someFalsyValue2` and the next `someFalsyValue3` are checked, and consequently are all values are still falsy up to the end (last second condition), the syntax then returns the final (default) expression as the resultant value, in our case `'some value'`. This operator mainly helps us check for different cases when it can be both `true` and `false`. Ultimately, a “final” guard condition/expression works as the default placeholder value.
+
+With both the logical AND operator and logical OR operator covered, it is also important to note that these operators can also be used together to form a better logical sequence. Here is yet another code snippet combining the two operators together.
+
+```javascript
+//
+const age = 24;
+const isOldEnough = (age >= 18 && 'yes') || 'no';
+
+console.log(isOldEnough); // prints 'yes' to the console.
+
+const age = 24;
+const hasLicense = true;
+const ownsCar = false;
+
+const canUserDrive = (age >= 18 && hasLicense && ownsCar && 'yes') || 'no';
+
+console.log(canUserDrive); // prints 'no' to the console.
+```
+
+Here we can see how the two operators help complement each other and provide us a cleaner and better syntax to make conditional checks and get resultant values in a single line, as opposed to a multi-line `if` statement wrapped block of code.
+
+Finally, the last short-circuiting syntax in JavaScript, the null coalescing operator (`??`), which works slightly differently from the other two operators, yet, just as useful as they are. Just as the logical AND operator and the logical OR operator check the truthiness of the left-most expression/condition and decide the consequential steps, the null coalescing operator checks if the left-most side expression evaluates to either the `null` or `undefined` primitive types and not **_any_** falsy value. If the left-most expression results in either a `null` or `undefined` value, then the operator turns to the next expression in the chain until the furthest (right-most expression) or an expression that evaluates to any value except null or undefined. Here is a simple code snippet illustrating an example of the use case for the null coalescing operator in JavaScript:
+
+```javascript
+//
+// All uninitialized variables in JavaScript are 'undefined' by default
+let isUserActive;
+
+const activityStatus = isUserActive ?? 'active';
+
+console.log(activityStatus); // Displays 'active' as the first expression was null/undefined.
+
+const user = {
+	name: 'Alan Turing',
+	city: 'London',
+	country: 'United Kingdom',
+};
+
+console.log(user.name ?? 'User has no name'); // prints 'Alan Turing'
+console.log(user.city ?? 'User has no city'); // prints 'London'
+console.log(user.age ?? 'User has no age'); // prints 'User has no age'
+// Here user.age is undefined
+
+let currentUser = null;
+console.log(currentUser ?? 'No user registered'); // prints 'No user registered'
+```
+
+From the second example within the code snippet, we notice a JavaScript object named `user` with three properties, namely, `user.name`, `user.city`, and `user.country` with values assigned. In this case, when trying to access any other property on this object that does not exist, the language sees it as an `undefined` value; it simply means there is no such property present on that object. Similarly, when we create a variable in JavaScript using the `let` keyword and do not assign any value explicitly at any point in the codebase, the language treats this variable value as `undefined` by default. As a rule of thumb, the `undefined` keyword is inherently used by the language to treat variables and properties that do not hold an explicit value by themselves; the `undefined` keyword is JavaScript's implicit way of assigning some value.
+
+Likewise with `undefined`, the `null` keyword behaves similarly, except that it is almost never defined by the language itself, as JavaScript uses the `undefined` keyword to reference variables and object properties without values, the `null` keyword is used by programmers to explicitly state that a variable or property within an object holds “no value”. The `null` keyword is supposed to function and provide the same meaning as the `undefined` keyword, except that it is used by the programmer rather than the language interpreter (which, as mentioned, uses `undefined`). As a result, the null coalescing operator is beneficial in cases where we require “some” value that is defined (it can be truthy or a falsy value).
+
+Finally, after comprehending the difference and the use cases of all three short-circuiting syntaxes in JavaScript, we can try and combine them together to make a robust, clean, and short conditional check within our codebase. Here is an extended example involving all three operators in a more real-world scenario.
+
+```javascript
+//
+const user = {
+	name: 'Alan Turing',
+	isAdming: true,
+};
+
+const details =
+	(user.name ?? 'User Name ') + ((user.isAdming && 'Admin') || 'Not Admin');
+```
+
+As a quick explanation: here we have an object titled `user` which has just two properties: `name` and `isAdmin`; the `details` variable checks if the `user.name` field is either `null` or `undefined`, and since it is neither, the actual `user.name` is the expression result, followed by a string concatenation using `+` operator, we check if the `user.isAdmin` property is a truthy value; here, since the `isAdmin` property is explicitly set to true, the immediate expression after the`&&` is executed as a result. Eventually, the `details` variable would look something like: `"Alan Turing Admin"`.
+
+This is how we make use of the different short-circuiting operators in JavaScript, when used correctly, they help refactor our codebase by making decision statements smaller and more concise within a single line in a variable, as opposed to having a multi-line code block within numerous `if` and `if...else` statements.
+
+### _Thank you for reading this blog! Until next time._ 👋🏻
