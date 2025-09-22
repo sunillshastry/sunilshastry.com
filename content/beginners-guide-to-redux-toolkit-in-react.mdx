@@ -1,0 +1,413 @@
+---
+slug: 'beginners-guide-to-redux-toolkit-in-react'
+title: "Beginner's guide to Redux Toolkit in React"
+subtitle: 'An introduction on how to manage global state in React'
+date: '2025-09-23'
+duration: '16 minutes'
+description: 'Sunil Shastry discusses about and provides a beginner friendly reference guide to using Redux and Redux Toolkit in React. Sunil Shastry explains different React hooks: useState, useReducer and other prerequisites, before guiding through Redux usage with numerous easy-to-follow examples'
+---
+
+Managing `state` in React is a crucial step to working with application data, improving interactivity, and enhancing performance in your projects. The way the state itself is organized, handled, and used can be a significant factor in deciding the overall application speed, performance and the developer experience involved while working on the project, short and long term.
+
+However, in a typical medium-to-large-scale React (or Next.js) project, it can get tedious to handle a single component-level state, which is required across many other components. To tackle this issue, there are numerous caveats trying to solve this, some of which include (non-global state options), prop drilling between parent and children components, React's own Context API with `createContext` and `useContext`, and sometimes even using the URL with query parameters (`https://example.com/?theme=dark`), where the query parameter `?theme=dark` can be accessed across multiple app-wide components or pages. Although these options are perfectly valid and, in fact, are great for applications where the state is needed for a handful of components, maybe even higher in certain cases, they tend to become a hassle and difficult to manage when scaling your app with that state. Furthermore, the options mentioned could potentially require a comprehensive setup, customization, and a lot of boilerplate code to implement and test before actually being able to work with the state itself. An industry standard alternative to setting up a state with the native options is using a global state, something like Redux with Redux Toolkit. There are plenty of open-source and recommended global state libraries available, including Redux itself, Zustand, Recoil, Jotai, and more.
+
+## One step back and then a leap
+
+From the many available global state libraries, Redux is by far the most popular, well-backed, and has a great ecosystem of resources, documentation, and plugins on the NPM (Node Package Manager). Redux is an open-source state-management library for the React framework, released in June 2015. It was developed and is maintained by the core members of the official React team. Redux itself was developed at Facebook, and it is both a library and involves a certain opinionated pattern or architecture to handle global state across components in your project. The use case and setup of Redux resemble an extended version of the `useReducer` hook in React. For reference, here is a simple example setup of the `useReducer` hook in React involving an on/off toggle switch state.
+
+```jsx
+//
+import { useReducer } from 'react';
+
+// Reducer function to manage logic for mutations
+function reducer(state, action) {
+	switch (action.type) {
+		case 'on':
+			return {
+				status: 'on',
+			};
+
+		case 'off':
+			return {
+				status: 'off',
+			};
+
+		default:
+			return {
+				status: 'off',
+			};
+	}
+}
+
+const initialState = {
+	status: 'off',
+};
+
+function useToggleSwitch() {
+	const [state, dispatch] = useReducer(reducer, initialState);
+
+	return { state, dispatch };
+}
+
+export default useToggleSwitch;
+```
+
+In React's `useReducer` hook, a more complicated setup is often required, in contrast to the more often used `useState` hook, which only takes one argument on the hook function call as the initial or default value of the state. The `useReducer`, however, is more advanced than the `useState` hook, and as such, it is recommended to have the `useState` hook for simple component states; however, when dealing with pieces of data linked or relevant to each other, it is a good idea to have the `useReducer` hook to manage your state. Additionally, another vital difference between the `useState` and the `useReducer` hook is the ability to have complete control over updating the state with new values. With the `useState` hook, one could update the state value as preferred, and although this is great for most use-cases, when dealing with complex data/state, updating unrecognized or undefined values can spoil the entire state (including other pieces of data) and eventually the entire app, depending on the state's importance.
+
+```jsx
+//
+// Updating state with the useState hook
+
+const [status, setStatus] = useState('off');
+
+setStatus('on');
+setStatus('abcd'); // Perfectly valid; but breaks logic in our codebase
+setStatus(null); // Perfectly valid; but breaks logic in our codebase
+```
+
+From the example above, the `setStatus` function lets us change the value of the `status` state variable to just about anything we would want - undefined values, numbers, objects, dates, and whatnot. However, by logic within our project, the only value `status` can have is either the `'on'` or `'off'` string values. By using the `useState`, we are leaving it to the discretion of the programmer to decide what value to update it by, and oftentimes, if the state is simple and straightforward, this is absolutely fine. However, when dealing with a group of pieces of data, updating numerous values for one tiny change can be more complex, error-prone, and provides a tougher developer experience for the programmer. Here is an instance of such case below:
+
+```jsx
+//
+const [country, setCountry] = useState({
+	name: 'Canada',
+	capital: 'Ottawa',
+	continent: 'North America',
+	languages: ['English', 'French'],
+	currency: 'Canadian Dollar',
+});
+
+// Changing a single value 'capital' (wrong way!)
+setCountry({ capital: 'Calgary' });
+
+// Changing a single value 'capital' within the 'country' state (correct way)
+setCountry(function (currentState) {
+	return {
+		...currentState,
+		capital: 'Toronto',
+	};
+});
+```
+
+As seen above, changing a single piece of data within the state `country` without affecting the other data can take a few lines of code, and when working in a large codebase, the ideal goal is to minimize any “extra” boilerplate code where possible. The `useReducer` hook solves this exact issue; it was primarily intended to replace the `useState` hook when dealing with complex state and pieces of data that are often interlinked with each other; the hook also gives you an abstraction and control to freely update the state value to “anything” (as we saw in one of our previous examples with the `status` state). Rather than manually using the `useReducer` hook to update the values yourself, you create a `dispatch` function that takes some meta information and optional prerequisite data to update the value, which is done during the `useReducer` hook setup, in the `reducer` function. The `reducer` function is where all your **“state mutations”** logic is present. You get to define how to update your state, with what values, and optionally perform validations if necessary. Here is an example of setting up and using the `useReducer` hook to handle the exact same state used above with the `country` state.
+
+```jsx
+//
+function reducer(state, action) {
+	switch(action.type) {
+		case 'name':
+			return {
+				...state,
+				name: action.payload || state.name
+			};
+
+		case 'capital':
+			return {
+				...state,
+				capital: action.payload || state.capital
+			};
+
+		... // Optional configuration for each piece of data within state
+
+		default:
+			return {
+				name: '',
+				capital: '',
+				continent: '',
+				languages: [],
+				currency: ''
+			};
+	}
+}
+
+const [country, dispatch] = useReducer(reducer, {
+	name: 'Canada',
+	capital: 'Ottawa',
+	continent: 'North America',
+	languages: ['English', 'French'],
+	currency: 'Canadian Dollar'
+});
+
+
+// Viewing state
+console.log(state, state.name, state.langauges, state.currency);
+
+// Updating state
+dispatch({ type: 'name', payload: 'India' });
+dispatch({ type: 'capital', payload: 'New Delhi'});
+```
+
+As seen above, it is clear that the `useReducer` hook requires a much complex setup than the one-line `useState` hook, but it pays off in the long run to correctly manage and work with state. Furthermore, updating state with the `useReducer` hook is much more predictable; one cannot simply access the state and update it on the fly, the programmer must use the `dispatch` function and pass in an object containing the meta information - it typically includes `type` and an optional `payload` properties, and based on the logic or configuration implemented in the hook's `reducer` function, the hook updates one or more piece of the state data. It is crucial to understand the `useReducer` hook and its differences with the `useState` hook, when to use what, and how to set each of them up correctly, as the Redux and Redux Toolkit state patterns involve the same architecture.
+
+## Redux vs Redux Toolkit
+
+While Redux is the official library and the design pattern behind working and managing global state, Redux Toolkit is a newer, yet official library as well, a recommended batteries-included toolset for Redux. It primarily simplifies the core and common Redux tasks such as store setup, reducer functions, smooth state updates, and any other potential side effects within your component. Redux Toolkit was released in October 2019 and is an open-source and community-driven library. The main reason behind making Redux Toolkit was to simplify the common and repetitive boilerplate setup that was needed in Redux; over time, Redux was subjected to a lot of criticism involving the initial setup and configuration. Finally, Redux Toolkit also offers fantastic developer tools for programmers to traverse through the different stages of their state and see how it affects their application - this is great for manual testing, checking app performance, and validating edge cases within the application in a fraction of time.
+
+## Incorporating Redux Toolkit
+
+We will discuss how we can finally set up and use Redux with Redux Toolkit in one of our projects, and see how it helps us access state globally across any and all components without prop drilling or other workarounds. To get started, create a basic React project. You can do so with React's official (but deprecated) `create-react-app` or using a more modern setup and build tool with Vite. I will be using the latter. You can create a blank React project by running the command(s):
+
+```bash
+# terminal
+npm create vite@latest
+```
+
+Full React setup with Vite:
+
+```bash
+# terminal
+npm create vite@latest
+
+> npx
+> "create-vite"
+
+│
+◇  Project name:
+│  redux-guide
+│
+◇  Select a framework:
+│  React
+│
+◇  Select a variant:
+│  JavaScript
+│
+◇  Scaffolding project in /Users/sunilshastry/redux-guide...
+│
+└  Done. Now run:
+
+cd redux-guide
+npm install
+npm run dev
+```
+
+To have a simple starter page, delete all the content within the `App.jsx` component in your `src/` folder and display a simple hello world instead.
+
+```jsx
+// src/App.jsx
+
+function App() {
+	return (
+		<div>
+			<h1>Hello world</h1>
+		</div>
+	);
+}
+
+export default App;
+```
+
+Upon updating `App.jsx` source file, start the development server with the following command:
+
+```bash
+# terminal
+npm run dev
+```
+
+After running `npm run dev` you should see a simple blank page with the text “Hello World”; this is sufficient for us at this point. Next, we can install Redux and set it up in our project, you can do so by following the instructions provided below:
+
+```bash
+# terminal
+# Install redux-toolkit
+npm install @reduxjs/toolkit
+
+# Install react-redux as well
+npm install react-redux
+```
+
+Before we continue setting up our global state with Redux Toolkit in our project, understanding an essential feature between Redux's `store` and `slice` is key. A `store` in Redux is typically a centralized container that holds the application state. You can think of this as the single source of truth of your application, where multiple different pieces of global state are registered and reside. It holds all your `reducer` functions, offers developer tool support, and any optional middleware (out of our scope). Next, a `slice` in Redux Toolkit is a small portion of the Redux store, dedicated to one state domain, i.e, a slice of state contains pieces of data linked or relevant to each other within a `slice` in Redux Toolkit. A `slice` takes basic and important information about the state, such as name, the default and initial values, specific reducer functions, and actions to mutate the state. Think of a `slice` as a small state hook that holds some data. In a normal use case, your project must always have one `store` but can have numerous `slices` that are all registered in the `store` to be used by the components in your project.
+
+To ensure we have an organized and clean file structure, create two folders in the `src/` folder named `store/` and `slices/`. In the `store/` directory, create a file titled `store.js`; this is where we will set up our `store`, register `slices`, and make it accessible for other components.
+
+```jsx
+// src/store/store.js
+
+import { configureStore } from '@reduxjs/toolkit';
+
+const store = configureStore({
+	reducer: {},
+});
+
+export default store;
+```
+
+A short and simple setup, but we will come back to this at a later stage to update the `reducer` property after we create one or more `slice` instances. Next up, we create a simple `slice` that we can use in our store. Go ahead and create a file named `counterSlice.js` in the `slices/` directory; in this `slice`, we will set up a simple counter that displays the current count value. We will configure functionality to add, subtract, and reset the count value. Additionally, we will have a piece of data having a color property based on the count value. Below is a simple pseudo code on the logic behind the counter state.
+
+```text
+# pseudocode
+variables:
+	counter
+	color
+
+initial_values:
+	counter = 0
+	color = black
+
+functionality:
+	add:
+		counter = counter + 1
+		if counter > 0 then color = green
+	subtract:
+		counter = counter - 1
+		if counter < 0 then color = red
+	reset:
+		counter = 0
+		if counter = 0 then color = black
+```
+
+After comprehending how the logic must work with our `counter` state create a file named `counterSlice.js` in the `slices/` directory, and write the following code to setup the slice.
+
+```jsx
+// src/slices/counterSlice.js
+
+import { createSlice } from '@reduxjs/toolkit';
+
+const counterSlice = createSlice({
+	name: 'counter',
+	initialState: {
+		counter: 0,
+		color: 'black',
+	},
+	reducers: {
+		add(state) {
+			state.counter++;
+			state.color = getCounterColor(state.counter);
+		},
+		subtract(state) {
+			state.counter--;
+			state.color = getCounterColor(state.counter);
+		},
+		reset(state) {
+			state.counter = 0;
+			state.color = 'black';
+		},
+	},
+});
+
+function getCounterColor(counter) {
+	if (counter > 0) {
+		return 'green';
+	} else if (counter < 0) {
+		return 'red';
+	}
+
+	return 'black';
+}
+
+export const { add, subtract, reset } = counterSlice.actions;
+export default counterSlice.reducer;
+```
+
+The above slice creates a state with two pieces of data: `counter` and `color`, and additionally offers us three functionalities or ways to mutate the add with some predefined logic. This level of abstraction is not only safe for testing purposes, but also is proven to be less error-prone. Upon creating our first `slice`, we can finally register it in our store to make it available for usage across our application. We can now update the `store.js` file to include the newly created `counterSlice` in it.
+
+```jsx
+// src/store/store.js
+
+import { configureStore } from '@reduxjs/toolkit';
+import counterSlice from './../slices/counterSlice';
+
+const store = configureStore({
+	reducer: {
+		counter: counterSlice,
+	},
+});
+
+export default store;
+```
+
+Upon adding it to our store, one final step of configuration before we start using it is to use the `Provider` component from the package `react-redux` (that we previously installed) in our `App.jsx` or `main.jsx` file with the created `store.js` setting. In `App.jsx`, update the file content to the following:
+
+```jsx
+// src/App.jsx
+
+import { Provider } from 'react-redux';
+import store from './store/store';
+
+function App() {
+	return (
+		<>
+			<Provider store={store}></Provider>
+		</>
+	);
+}
+
+export default App;
+```
+
+Congratulations! You have successfully set up Redux in your project - all and any child components within the `Provider` component will have access to the `counterSlice` state: `counter` and `color`. We can check and test this by creating an arbitrary child component and nesting it within the `<Provider>` component in `App.jsx`. Create a file titled `ChildComponent.jsx` in the `src/` directory and add the following content:
+
+```jsx
+// src/ChildComponent.jsx
+
+function ChildComponent() {
+	return (
+		<div>
+			<h1>Counter: 0</h1>
+			<button>Subtract</button>
+			<button>Reset</button>
+			<button>Add</button>
+		</div>
+	);
+}
+
+export default ChildComponent;
+```
+
+And back in our `App.jsx` file, you can append the `<ChildComponent />` directive within the `Provider` component as follows:
+
+```jsx
+// src/App.jsx
+
+import { Provider } from 'react-redux';
+import store from './store/store';
+import ChildComponent from './ChildComponent';
+
+function App() {
+	return (
+		<>
+			<Provider store={store}>
+				<ChildComponent />
+			</Provider>
+		</>
+	);
+}
+
+export default App;
+```
+
+To replace the static values, add functionality, and some interactivity with our state in the `ChildComponent` function, we can work with two hooks from the `react-redux` package: the `useSelector` and the `useDispatch` hooks. These hooks let you select (or read) and update state, respectively. Think of `useSelector` as the `state` from the `useReducer` hook, and the `useDispatch` as the `dispatch` function from the `useReducer` hook. From our earlier implementation in `ChildComponent`, we can update it with the following to add our desired functionality.
+
+```jsx
+// src/ChildComponent.jsx
+import { useDispatch, useSelector } from 'react-redux';
+import { add, reset, subtract } from './slices/counterSlice';
+
+function ChildComponent() {
+	const counter = useSelector((state) => state.counter.counter);
+	const color = useSelector((state) => state.counter.color);
+
+	const dispatch = useDispatch();
+
+	return (
+		<div>
+			<h1>
+				Counter: <span style={{ color }}>{counter}</span>
+			</h1>
+			<button onClick={() => dispatch(subtract())}>Subtract</button>
+			<button onClick={() => dispatch(reset())}>Reset</button>
+			<button onClick={() => dispatch(add())}>Add</button>
+		</div>
+	);
+}
+
+export default ChildComponent;
+```
+
+Now, we are finally able to access the global state values from our `store` and display and update them. We used the `useSelector` hook to select the specific piece of state and store it as a variable (`hint: make sure the stored variable is a normal JavaScript variable and not another useState variable`); With the state variables `counter` and `color` defined in our component, we can use them as read-only values and update the content on the page (it shows the number and uses the `color` value to add some simple styling). Secondly, we use the `useDispatch` hook to store a `dispatch` function in a variable. We can use this `dispatch` function, which in turn takes a callback function - our original reducer functions: `add`, `subtract`, and `reset` from `counterSlice`. Through this way, we are able to mutate state value with the logic predefined in our reducer functions within our slices; and although the `<ChildComponent />` was a direct child element of the `<App />` and `<Provider>` components, you can follow the same technique with `useSelector` and `useDispatch` to access and modify these values at any depth in your component tree structure, this is the main solution of global state management libraries like Redux.
+
+## Some advice on using Redux
+
+A last piece of advice about using Redux involves answering the question of _“When to use Redux?”_ and _“When not to use Redux?”_. Redux with Redux Toolkit is a complex library, intended to work with React state globally across your project components; using it in small-to-medium-sized applications with basic state complexity is often overkill and also redundant; it adds unnecessary overhead boilerplate complexity, which, in some cases, can affect performance and developer productivity. It is best advised to stick to `useState` or `useReducer` for simple and unshared states, and as a next step, should you require a more “global” or shared state, a better alternative or choice is to go with “prop-drilling” if it is feasible, or use React's Context API, which is similar to Redux in a few ways. Another factor to consider is the type of data you are working with. If you are working with server state (fetching data from an API), you are far better off using a completely different library, such as **TanStack Query**, which provides better support and is made for that use case, than Redux. Redux is mainly optimized and built for client-side application state/data, and not server-side.
+
+On the other hand, understanding and architecting Redux within a medium-to-large-sized application is vital for a front-end developer. When you are working with complex or globally shared state across numerous pages and components, it is a much better choice to use Redux over React's Context API, due to performance complexity and overhead boilerplate involved during setup and usage. This might include things such as - user login state, website theme state, or anything that often determines the current stage of the application for a user based on an important or complex piece of data. Alternatively, another important factor is to avoid repetitive and hard-to-read prop drilling between parent and child components. Prop drilling is a great way to have parent-child component communication; however, when done extensively, it can make go hard to read and debug. Understanding certain use cases on when to use Redux involves educating yourself through practice and experience. This is not a learned skill that is memorized, but one that is learned with experience over time, working with it in numerous scenarios.
+
+### _Thank you for reading this blog! Until next time._ 👋🏻
