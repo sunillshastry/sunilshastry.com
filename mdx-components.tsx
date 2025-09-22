@@ -17,7 +17,7 @@ const mdxRemoteComponents = {
 		<strong className="font-bold" {...props} />
 	),
 	p: (props: ComponentPropsWithoutRef<'p'>) => (
-		<p className="leading-9" {...props} />
+		<p className="my-5 leading-9" {...props} />
 	),
 	hr: (props: ComponentPropsWithoutRef<'hr'>) => (
 		<hr className="my-6 border-gray-400/25" {...props} />
