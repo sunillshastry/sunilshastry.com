@@ -35,6 +35,7 @@ export default function BackTop() {
 						? 'bg-white text-black shadow-white/10'
 						: 'bg-black text-white'
 				)}
+				aria-label="Scroll Top"
 			>
 				<span className="block transition group-hover:-translate-y-0.5">
 					<ArrowBigUp fill={theme === 'dark' ? 'black' : 'white'} />
