@@ -22,7 +22,7 @@ export default function BlogTitle({ blog }: FunctionProps) {
 				</div>
 
 				<div className="mt-3 flex items-center justify-between font-mono text-xs max-lg:flex-col max-lg:items-start max-lg:gap-y-3">
-					<h3 className="flex items-center justify-start gap-x-2">
+					<p className="flex items-center justify-start gap-x-2 font-medium">
 						<Link
 							href="https://x.com/sunillshastry"
 							target="_blank"
@@ -33,8 +33,8 @@ export default function BlogTitle({ blog }: FunctionProps) {
 						<span className="border-l border-gray-400/25 pl-2">
 							{month} {date}, {year}
 						</span>
-					</h3>
-					<h3>~{blog?.duration}</h3>
+					</p>
+					<p>~{blog?.duration}</p>
 				</div>
 			</div>
 		</>
