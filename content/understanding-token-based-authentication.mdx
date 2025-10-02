@@ -1,0 +1,445 @@
+---
+slug: 'understanding-token-based-authentication'
+title: 'Understanding Token Based Authentication'
+subtitle: 'Standardized strategies in token based authentication for securing apps'
+date: '2025-10-2'
+duration: '18 minutes'
+description: 'Sunil Shastry introduces token based authentication, and talks about access and refresh tokens - what they are and how they are beneficial together, for a systemic and secure backend authentication system. While providing necessary theory, Sunil Shastry also illustrates with numerous examples and best-practices.'
+---
+
+Authentication is one of the most critical parts of building secure applications. Handling user authentication ensures that the right user is permitted their necessary and correct information and any potential sensitive data on the app. By managing authentication securely and in a trustworthy manner, the consumer is opted to trust your application with their personal data. In software engineering and development, they are numerous well-working and battle tested patterns and techniques to securely implement authentication from the backend; these include sessions authentication, cookie based authentication, or the more modern token based authentication. Modern web applications use the latter, the token based authentication. A token based authentication includes a unique and hashed token produced by the backend which is often short-lived _(15 to 60 minutes)_, or long-lived _(5-7 days)_. The TTL (Time to Live) duration is determined by the development team (based on the business logic) and also the type of token used. Often times, most access tokens are short-lived, while refresh tokens are long-lived. We will discuss what these are in detail at a later stage.
+
+## Authentication: strong and long pillar of your application.
+
+With regard to the token based authentication itself, we will see how it works in practice, and determine its different use cases. In a typical full-stack system, the client and the server often communicate with each other via HTTP requests, this might be through RESTful APIs, GraphQL or gRPC; regardless of the various protocols and patterns, a key factor that all backends must consider is protecting certain routes to limited or no users all together. For instance, the backend's API route `/api/posts/popular` might be available to all users to view, this API route might respond with content and data related to some arbitrary posts that have a certain “popularity” rating; in most cases, this route can be viewed as a “public” route. A public route requires no authentication or authorization to be viewed, it is as open as it can be. However, in another instance, the backend's API route `/api/admin/users` must be private or protected at all costs from the public. Only a subset of people amongst the public (this could be company staff, development team, shareholders admin panel, etc.) are allowed to access and view the members within the “admin” staff in a company or team. Allowing the second API route to be public not only provides sensitive and confidential data to the public, but also leaves a giant flaw in securing important information regarding the company. All in all, seeing the two backend API routes in action, and understanding how the second route requires some level of authentication before accessing the resulting data, is fundamental and crucial to build large-scale full-stack applications.
+
+In most cases, the idea of “authentication” in such scenarios include a simple (yet complicated) system of “login/logout” mechanisms. This workflow is rather straightforward in theory and likely familiar to most readers, as they come across multiple apps that implement and use this pattern. The idea is simple, a user creates their account in accordance to the application: the user provides their personal information, credentials (could be a username/email and a password), and optionally might pick a “role” (occasionally, this might be an admin or user role). The “credentials” provided by the user are a bunch of values that help the user uniquely identify themselves on the application. It is the application's responsibility to ensure that the credentials are validated and meet some standard expectations before creating the user on its database. Consequently, based on the created user's role (which is also verified), the user now gets access to certain routes that were otherwise private and inaccessible to the public. This is the most basic, yet most common form of authentication used across multiple small and large-scale applications across multiple sectors - from banking to social medias.
+
+Consequently, implementing this pattern in our applications, while making it not only accurate but also smooth. We must remember that authentication is one of, if not the most important feature in our backend systems. It singlehandedly structures our backend to ensure no unexpected user performs any unexpected actions, disintegrating customer trust and application security. As we briefly mentioned earlier, tackling authentication has many very-well tested techniques and all of them have their advantages and some disadvantages. Picking a certain authentication technique, is dependent on a few factors, including: level of authentication, database latency factor, app and database scalability, and other resources such as storage. Determining the type of authentication your system requires based on its growth and scale, is part of the development and design team's responsibility. The design team is expected to come up with strong patterns and ideas to implement this feature based on the application's level, while the development team is required to practically take the design team's theory and implement it in practice with the real-world application.
+
+## Visualizing token based authentication
+
+As we see how important and complicated authentication can be at different levels, we will now see how the token based authentication actually works in practice in our backend systems with JavaScript's runtime framework `Node.js`. `Node.js` is one of the most popular frameworks used to implement complex backend systems, however, this guide can render useful to developers and readers how would wish to understand token based authentication, using a different language or framework. Here, we will be using the popular and minimal `Express` framework with `Node.js` to implement and show examples with our authentication.
+
+In a typical client-server architecture, with each request and response cycle, the client sends the request to the server with some or no body data, (although the request will still include certain meta data such as headers, request method, etc), and in return, the server receives this request from the backend system and performs any necessary verification and validation, before performing the main business logic, and finally sending back an apt response to the client. This is the standard request-response cycle that is performed for each request sent by the client. With the token based authentication system, we take this base setup of request-response cycle and extend it with an additional field/entity to ensure each request-response cycle includes an authentication system - for the right user to perform the right tasks.
+
+Before we delve into token based authentication implementation in code, let us create and setup a simple backend system to send our requests to, we will do so using `Node.js` and the `Express` framework, to follow this tutorial (if you wish to), start by creating a directory titled `token-auth` and initialize `npm` in it. You can do so by running the following command:
+
+```bash
+# terminal
+npm init -y
+```
+
+Once you have Node/NPM initializing in your project directory, you can install a handful of package dependencies to get started with Express:
+
+```bash
+# terminal
+npm install express --save
+```
+
+```bash
+# terminal
+npm install nodemon --save-dev
+```
+
+Once you have this setup, create `index.js` at the root level of your project directory and configure Express to setup an initial starter plate for your backend system.
+
+```javascript
+// token-auth/index.js
+const express = require('express');
+const app = express();
+
+// Middlewares
+app.use(express.json());
+
+// Default PORT
+const PORT = 8000;
+
+// Sample GET method request
+app.get('/hello', function (request, response) {
+	return response.status(200).json({
+		success: true,
+		message: 'Hello!',
+	});
+});
+
+app.listen(PORT, function () {
+	console.log('Server is currently running on port:', PORT);
+});
+```
+
+With the above code snippet included in your `index.js` file, we can start our server by slightly updating the `package.json` file in our project directory, which was created when we initialized NPM (`npm init -y`):
+
+```json
+// package.json
+{
+	...
+  "main": "index.js",
+  "scripts": {
+			"start": "node index.js",
+			"dev": "nodemon index.js"
+  },
+  "keywords": []
+  ...
+}
+```
+
+After updating the `"scripts"` property in our `package.json` we can finally start and run our server without needing to redoing the process for each change in our codebase (thanks to the `nodemon` package we installed earlier). You can start your server by running the following command (alternatively, you can stop the server running by entering Control + C on the terminal):
+
+```bash
+# terminal
+npm run dev
+```
+
+Now that we have a basic starter setup in code for our backend system, let us discuss how we can extend the previously mentioned “base” request-response cycle and include authentication as a part of it. With our current understand of this cycle, we know that every request that is accepted by our backend system - receives it, verifies and then sends some response back. However, we do not have any authentication - to get started with this, we will need to first authorize and authenticate with something! This is where the idea of credentials or any unique identifier agreement between the user and our application comes into picture. We will assume that the user registers within our application by a unique identifiable information, most often, this includes a combination of an email or a unique username, and a strong password; when our user finally registers in our application with a valid combination of these credentials, our backend system must, as expected, create an entity within our “users” database, and store the provided (and sensitive) information (such as username, password, etc), in an encrypted or hashed format. Storing sensitive data such as username and passwords in an encrypted or hashed format is vital to ensure long-term security of the data and to make it less vulnerable at times of data breach or any other unexpected events.
+
+Once the user is correctly registered and when it is time for the user to login, the user again provides the combination of their credentials (lets say username and the password), to login to use our application system, the backend receives this request to login and again, validates the credentials to prove that the “person” trying to login is indeed the same “person” registered on our application database or system. Once the backend system verifies the person's credentials (based on whatever validation business logic setup), we can confirm that this “person” is now authenticated to view and make a certain set of requests to our backend system for a specified time period or duration. In short, upon a successful login to our system, we need to ensure that our application “remembers” this person or stores in memory details about this person, so that the user is able to use the application. However, remembering or storing information about logins or authentication, is often vulnerable depending on the level or security and information itself that is being stored, an alternative approach is to do it without storing it anywhere, in fact, that is is the token based authentication, we do not make any external adjustment on external resources (such as databases, cache, etc), instead, upon a successful login, we create a unique hash that is valid for a specified duration.
+
+## Core of authentication tokens: access and refresh tokens.
+
+As mentioned, we create a unique hash within our server that has a specified TTL (Time to Live) duration, which is determined by the design and development team, based on some business logic. This unique hash created within our server has some form of information/data in an encrypted form using popular hashing algorithms. The hash token itself has three parts - header, payload and verification secret. A popular industry-standard used library to create, verify and manage these tokens is `jsonwebtoken` or JWT. JWT is well-known and used primarily for backend systems to implement token based authentication in multiple languages and frameworks; it holds great ecosystem and community support across numerous sectors. The JWT tokens we create holds three main parts: the header, payload and verification secret. The header of the JWT, includes some basic metadata about the token itself, this includes the algorithm used for encrypting or hashing, the type of token, etc; the payload includes information about the user details, this is specific and unique to all users, this could be as little as a user's unique ID generated in our database, or could be full-blown, with all information related to the user stored on our database, the amount of payload data included in the token depends on the design and development team's decision for their application, but including redundant or all the data can only make your application more vulnerable, and more importantly, the payload will also include some more data about the token such as the issued time and the time it expires at; finally, the last part of the token, the verification secret, is a piece of data that JWT uses to encrypt and decrypt the payload and header, understand this as a key to unlock and lock the hashed token into the actual content encoded in it.
+
+Creating this token in our application, and sending it back in our response (or as a HTTP cookie, to be more secure), is our access token. The access token as generated by our backend system using `jsonwebtoken` helps us verify the user for a specified duration. Once the access token has expired, the user will no longer be able to use the same token to use our application, this is where we either ask our users to re-login to our application, or we make other adjustments with refresh tokens, which we will discuss at a later stage. At this stage, just with our access token, upon correctly logging, in, we make sure that our backend system sends a `success` response with our access code, and at any subsequent requests the user makes that are either private or protected, the user must include the provided token in the response header in an accepted format. By doing this, our backend systems will check the response header for each private or protected routes and validate if the provided token is correct and valid at the time, and consequently perform relevant tasks based on business logic.
+
+**A sample workflow of token based authentication with just access tokens:**
+
+- The client sends request to login to our application with correct credentials.
+- Our application's backend system validates it.
+- Assuming it is correct, the application sends back a success response with the newly created access token using the `jsonwebtoken` library.
+- The client receives back this response, and the access token is stored in memory or on disk (via `localStorage`).
+- For any, and all subsequent requests to the protected routes, sent from the client, the client includes this token in the request header, under the `Authorization`.
+- The server receives the subsequent requests, validates, or checks the token included in the request headers.
+- If the token is valid: the it means the user is still authenticated and can make that request and get valid responses from the server.
+- If the token is invalid _(incorrect or expired)_, the backend systems will often prompt the user to login again.
+
+Including the access token in the request headers is vital for our client-server interaction with authentication, in fact, there is a popular convention with this procedure. That is, to place the access token in the `Authorization` request header with the value of `Bearer <access-token>`. We can setup a simple code snippet to implement a manual authentication system in Node.js with `jsonwebtoken`.
+
+Before we get started with our snippet, we must first install the `jsonwebtoken` library to our project via `npm`:
+
+```bash
+# terminal
+npm install jsonwebtoken --save
+```
+
+```javascript
+// index.js
+const express = require('express');
+const app = express();
+const jwt = require('jsonwebtoken');
+
+const JWT_SECRET = 'my-super-secure-jwt-secret';
+
+// Middlewares
+app.use(express.json());
+
+const PORT = 8000;
+
+app.post('/login', function (request, response) {
+	const { email, password } = request.body;
+
+	// Validate and check if the credentials are correct
+	// ...
+	// Retrieve user information from database as our payload
+	const user = {
+		id: 1,
+		username: 'alanturing',
+	};
+	// Assuming the credentials are correct are correct, send a 200 response with the access token
+	const accessToken = jwt.sign(user, JWT_SECRET, { expiresIn: '30m' });
+	return response.status(200).json({
+		success: true,
+		token: accessToken,
+	});
+});
+
+app.listen(PORT, function () {
+	console.log('Server is currently running on port:', PORT);
+});
+```
+
+Here, we are using the `jsonwebtoken` package to create our access token, the `sign()` method takes in three arguments: the payload - this is typically the data we wish to encrypt and send back to the user, this normally includes data such as user identification such as username and user ID; the second argument takes the `jsonwebtoken` secret - this value is critical for creating and verifying our tokens, and it is important that this secret value is securely placed in a `.env` which is not available for the public; lastly, the method takes in an optional object with options, one of which is the `expiresIn` key indicating the duration before the token expires.
+
+Once we have our `/login` route setup with the `POST` method, we can start our server and view our response:
+
+```bash
+# terminal
+npm run dev
+
+> token-auth@1.0.0 dev
+> nodemon index.js
+
+[nodemon] 3.1.10
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `node index.js`
+Server is currently running on port: 8000
+```
+
+As a next step, we can use the `curl` command to test our newly created route:
+
+```bash
+# terminal
+curl -X POST http://localhost:8000/login
+```
+
+```bash
+# terminal
+{
+	"success":true,
+	"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhbGFudHVyaW5nIiwiaWF0IjoxNzU5Mzg1Njk5LCJleHAiOjE3NTkzODc0OTl9.WDkprrNoMhLD_djoZzNb6wPg0AYWaeSGM0We1hVy2rE"
+}
+```
+
+We have our access token! This our way of knowing if a “login” functionality was successful from our backend system. From our response, we have the `"token"` property containing our access token; with this, the client side system can now store the access token in memory and use it in subsequent requests made to protected route, and in order to authenticate the token and verify it, we can create a custom middleware in our backend to manage authentication for protected routes.
+
+```javascript
+// index.js
+function authenticate(request, response, next) {
+	const authHeaders = request.headers['authorization'];
+	if (!authHeaders) {
+		return response.status(401).json({
+			success: false,
+			message: 'No authorization token found',
+		});
+	}
+
+	const token = authHeaders.split(' ')[1];
+
+	try {
+		jwt.verify(token, JWT_SECRET);
+		next();
+	} catch {
+		return response.status(401).json({
+			success: false,
+			message: 'Invalid or expired token; please login',
+		});
+	}
+}
+
+app.get('/protected', authenticate, function (request, response) {
+	return response.status(200).json({
+		success: true,
+		message: 'You are accessing a protected route!',
+		data: {
+			secret: 'abc123',
+		},
+	});
+});
+```
+
+Here we use the `authenticate` function as our middleware to check the access token presence and validity from the `Authorization` header using the `Bearer <access-token>` format. Ultimately, with this setup, we can test our backend for valid and invalid tokens.
+
+**Invalid tokens:**
+
+```bash
+# terminal
+curl -X GET http://localhost:8000/protected
+```
+
+```bash
+# terminal
+{
+	"success": false,
+	"message": "No authorization token found"
+}
+
+```
+
+```bash
+# terminal
+curl -X GET -H "Authorization: invalid-token" http://localhost:8000/protected
+```
+
+```bash
+# terminal
+{
+	"success": false,
+	"message": "Invalid or expired token; please login"
+}
+```
+
+**Valid tokens:**
+
+```bash
+# terminal
+curl -X POST http://localhost:8000/login
+```
+
+```bash
+# terminal
+{
+	"success": true,
+	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhbGFudHVyaW5nIiwiaWF0IjoxNzU5Mzg2NzcyLCJleHAiOjE3NTkzODg1NzJ9.AeFPFMZRPHzifKluq_J4BioTf6q-VT4NiQwxEjTVQdE"
+}
+```
+
+```bash
+# terminal
+curl -X GET -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhbGFudHVyaW5nIiwiaWF0IjoxNzU5Mzg2NzcyLCJleHAiOjE3NTkzODg1NzJ9.AeFPFMZRPHzifKluq_J4BioTf6q-VT4NiQwxEjTVQdE" http://localhost:8000/protected
+```
+
+```bash
+# terminal
+{
+	"success": true,
+	"message": "You are accessing a protected route!",
+	"data": {
+		"secret": "abc123"
+	}
+}
+```
+
+By correctly logging in through our `/login` route, we receive a valid access token (current validity is set to 15 minutes), with subsequently, with our access token, we send requests to any protected routes with the access token, this allows our backend to logically validate and verify the user accessing the sensitive account data. Following certain conventions and rules in this process can be helpful to scale your application.
+
+## Roadblock with access tokens
+
+We setup and noticed how access tokens help us build an authentication system in our backend though the token based authentication strategy. Using access tokens by themselves are somewhat sufficient in a few cases and if done correctly and securely, the access token strategy alone is good enough. However, there are a few shortcomings, both in terms of security and user experience with our application. One such issue is the duration; in our current setup, we have configured so that the access token is valid for exactly 15 minutes, and this is not so great for the user experience of the application consumers, it means that the user must login once every 15 minutes and that is not practical at all, in fact, it is standardized that once a user logs in, the user remains logged in for at least about a handful of days for most applications _(with the exception for banking and other applications where security is extremely important)_. To overcome this issue, we could simply update token validity duration to something like 6 or 7 days to provide a better experience to our users; this solves our current issue. However, in doing this, it creates a far worse issue, this time concerning the user identity and security. When we configure our access tokens to have a relatively long TTL (Time to Live) value, we need to consider the fact that if our access tokens were to be accessed or hacked by entity other than the user, it means that they also have access to the rightful user's account for about 6 to 7 days, and in each case, that is plenty of time for the hacker to manipulate and make important updates or adjustments on the rightful user's behalf in their account; this is more common than most people anticipate and it can lead to massive issues when dealing with sensitive information - could be financial, academic, work related, etc.
+
+To overcome or rather minimize this issue - our immediate solution is to limit the access and time of our access tokens to maintain a short TTL, and use refresh tokens to reissue new access tokens when the original one(s) expires - this ensures that if the token indeed was in the wrong hands, they do not have access for too long. Introducing refresh tokens in our current system solves both the issues: it provides great user experience for the consumer using our application, and from a security standpoint, it can be stored in an HTTP only cookie that ensures cross-site scripting and hacking does not happen, to keep our refresh token safe. From the initial workflow of token based authentication with just access tokens, we will now introduce refresh tokens and see how it modifies and solidifies our backend authentication system:
+
+- The client sends request to login to our application with correct credentials.
+- Our application's backend system validates it.
+- Assuming it is correct, the application sends back a success response with the newly created access token and creates a refresh token _(with a validity duration of 5-7 days)_ using the `jsonwebtoken` library.
+- With the new refresh token created, the application saves this refresh token in an HTTP only cookie, it does not send the refresh token back to the user in the response.
+- The client receives back this response, and the access token is stored in memory or on disk (via `localStorage`).
+- For any, and all subsequent requests to the protected routes, sent from the client, the client includes this token in the request header, under the `Authorization`.
+- The server receives the subsequent requests, validates, or checks the token included in the request headers.
+- When the access token is valid, all systems run as expected and there is opportunity for client-server interaction to take place as needed.
+- When the access token has expired, the client _(frontend)_ must automatically send a request to our backend system via the `/refresh` route, with the refresh token correctly set in an HTTP only cookie.
+- Provided the cookie includes the refresh token correctly, our backend system again verifies the refresh token, and when the refresh token is valid, our backend system must send the client _(frontend)_ a new access token.
+- Alternatively, if the refresh token has also been expired or incorrect, we must clear the HTTP cookie and prompt the user to login - this would happen once every 5-6 days or whatever the TTL provided for the refresh token.
+
+With this new workflow, we see how different the system and logic works with refresh tokens part of our process. In this manner, from the developer's perspective - from the user's first login, we store the access and refresh tokens in respective places and use the access token to allow user to make any requests to protected route, and when the access token has expired _(15 minutes TTL)_, the application must automatically implement functionality to send another request to the backend to the conventional `/refresh` route to gain a new access token without needing the user to login again. This cycle continues until our refresh token eventually expires _(7 days TTL)_, and at this point, we can now prompt the user to login again. The ensures a safe procedure of handling authentication and login status of our users and also provides a smooth and user-friendly experience for our consumers. It is important to note that the TTL value for access and refresh tokens are not said values, they depend on various factors and are often left to the discretion of design and development teams.
+
+With the theory out of the way and understood, we will see how we can implement both access token and refresh token based token authentication in our backend system, extending from our previous implementation.
+
+```bash
+# terminal
+npm install cookie-parser --save # For working with HTTP cookies
+```
+
+```javascript
+// index.js
+const express = require('express');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
+
+const app = express();
+const PORT = 8000;
+
+const JWT_SECRET = 'my-super-secure-jwt-secret';
+const REFRESH_SECRET = 'my-super-secure-refresh-secret';
+
+// Middleware
+app.use(express.json());
+app.use(cookieParser());
+
+// Login
+app.post('/login', (req, res) => {
+	const { email, password } = req.body;
+
+	// Validate user credentials
+	// ...
+	// Retreive payload (typically from database)
+	const user = {
+		id: 1,
+		name: 'Alan Turing',
+		data: {
+			secret: 'abcd123',
+			posts: 10,
+			followers: 100,
+			following: 100,
+		},
+	};
+
+	const accessToken = jwt.sign(user, JWT_SECRET, { expiresIn: '15m' });
+	const refreshToken = jwt.sign(user, REFRESH_SECRET, { expiresIn: '7d' });
+
+	// Send refresh token in HTTP-only cookie
+	res.cookie('refresh-token', refreshToken, {
+		httpOnly: true,
+		secure: false,
+		sameSite: 'strict',
+	});
+
+	// Send a response back with the access token only
+	return res.json({ success: true, token: accessToken });
+});
+
+// Middleware: authenticate access token
+function authenticate(req, res, next) {
+	const authHeader = req.headers['authorization'];
+	if (!authHeader) {
+		return res
+			.status(401)
+			.json({ success: false, message: 'No authorization token found' });
+	}
+
+	const token = authHeader.split(' ')[1];
+	jwt.verify(token, JWT_SECRET, (err, user) => {
+		if (err) {
+			return res
+				.status(401)
+				.json({ success: false, message: 'Invalid or expired token' });
+		}
+		req.user = user;
+		next();
+	});
+}
+
+// Protected route
+app.get('/protected', authenticate, (req, res) => {
+	return res.json({
+		success: true,
+		message: 'You are accessing a protected route!',
+		data: { secret: 'abc123' },
+	});
+});
+
+// Refresh endpoint
+app.post('/refresh', (req, res) => {
+	const refreshToken = req.cookies['refresh-token'];
+
+	if (!refreshToken || !refreshTokens.includes(refreshToken)) {
+		return res
+			.status(403)
+			.json({ success: false, message: 'Refresh token not found or invalid' });
+	}
+
+	jwt.verify(refreshToken, REFRESH_SECRET, (err, user) => {
+		if (err) {
+			return res.status(403).json({
+				success: false,
+				message: 'Invalid refresh token. Please login again',
+			});
+		}
+
+		const accessToken = jwt.sign(user, JWT_SECRET, { expiresIn: '15m' });
+		const refreshToken = jwt.sign(user, REFRESH_SECRET, { expiresIn: '7d' });
+
+		// Send new refresh token in cookie
+		res.cookie('refresh-token', refreshToken, {
+			httpOnly: true,
+			secure: false,
+			sameSite: 'strict',
+		});
+
+		return res.json({ success: true, token: accessToken });
+	});
+});
+
+// An optional /logout route to clear cookies.
+app.post('/logout', (req, res) => {
+	res.clearCookie('refresh-token');
+	return res.json({ success: true, message: 'Logged out successfully' });
+});
+
+app.listen(PORT, () => {
+	console.log('Server is running on port:', PORT);
+});
+```
+
+With this newer implementation with both access token and refresh token setup, we now have a much better, smoother and more secure authentication system. In conclusion, access and refresh token-based authentication provides a secure and scalable way to handle user sessions in modern web and mobile applications. By keeping the access token short-lived _(roughly 15-30 minute TTL)_, the system reduces the risk of long-term exposure if a token is compromised, while the long-lived refresh token _(5-7 day TTL and stored safely in an HTTP-only cookie)_ allows seamless renewal of sessions without forcing users to log in repeatedly. This balance of security and usability makes the access + refresh token model a preferred choice for modern applications, especially those with distributed frontend systems and stateless backends that need to scale efficiently.
+
+### _Thank you for reading this blog! Until next time._ 👋🏻

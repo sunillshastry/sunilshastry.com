@@ -1,5 +1,7 @@
 import { ImageResponse } from 'next/og';
 
+export const runtime = 'edge';
+
 export async function GET(request: Request) {
 	const { searchParams } = new URL(request.url);
 
@@ -7,29 +9,67 @@ export async function GET(request: Request) {
 	const subtitle =
 		searchParams.get('subtitle') ??
 		'View new post on https://sunilshastry.com/blogs';
-	const link = searchParams.get('link') ?? 'https://sunilshastry.com/blogs';
 
 	return new ImageResponse(
 		(
 			<div
 				style={{
-					backgroundImage: 'linear-gradient(to right bottom, #C9D6FF, #E2E2E2)',
-					width: '100%',
-					height: '100%',
 					display: 'flex',
 					flexDirection: 'column',
-					paddingTop: '100px',
-					paddingLeft: '40px',
-					boxShadow: 'inset 10px 10px 10px rgba(0,0,0)',
+					height: '100%',
+					width: '100%',
+					alignItems: 'center',
+					justifyContent: 'center',
+					letterSpacing: '-.02em',
+					fontWeight: 700,
+					background: 'white',
+					fontFamily: 'Inter, sans-serif',
 				}}
 			>
-				<h1 style={{ color: 'black', fontWeight: 'bold', fontSize: '85px' }}>
+				<div
+					style={{
+						left: 42,
+						top: 42,
+						position: 'absolute',
+						display: 'flex',
+						alignItems: 'center',
+					}}
+				>
+					<span
+						style={{
+							width: 24,
+							height: 24,
+							background: 'black',
+						}}
+					/>
+					<span
+						style={{
+							marginLeft: 8,
+							fontSize: 20,
+						}}
+					>
+						sunilshastry.com
+					</span>
+				</div>
+				<div
+					style={{
+						display: 'flex',
+						flexWrap: 'wrap',
+						justifyContent: 'center',
+						padding: '20px 50px',
+						margin: '0 42px',
+						fontSize: 40,
+						width: 'auto',
+						maxWidth: 550,
+						textAlign: 'center',
+						backgroundColor: 'black',
+						color: 'white',
+						lineHeight: 1.4,
+					}}
+				>
 					{title}
-				</h1>
-				<h3 style={{ fontSize: '35px', color: '#333333' }}>{subtitle}</h3>
-				<h4 style={{ fontSize: '28px', color: '#666666' }}>
-					Available at &nbsp;<strong>{link}</strong>
-				</h4>
+				</div>
+				<p>{subtitle}</p>
 			</div>
 		),
 		{
