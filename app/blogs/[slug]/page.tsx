@@ -8,7 +8,6 @@ import { BlogMeta } from '@/interfaces/BlogMeta';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import ShareTab from '@/components/share-tab';
-import { headers } from 'next/headers';
 
 interface FunctionProps {
 	params: Promise<{ slug: string }>;
@@ -23,10 +22,10 @@ export async function generateMetadata({
 
 	const title = `${data?.title} | Sunil Shastry`;
 
-	const headersList = headers();
-	const host = (await headersList).get('host');
-	const protocol = (await headersList).get('x-forwarded-proto') || 'https';
-	const baseUrl = `${protocol}://${host}`;
+	const baseUrl =
+		process.env.NODE_ENV === 'development'
+			? 'http://localhost:3000'
+			: 'https://sunilshastry.com';
 
 	const ogImage = `${baseUrl}/api/og?title=${data?.title}&subtitle=${data?.subtitle}`;
 	console.log(ogImage);
