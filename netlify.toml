@@ -5,5 +5,5 @@
 [functions]
   node_bundler = "esbuild"
 
-[plugins]
+[[plugins]]
   package = "@netlify/plugin-nextjs"
