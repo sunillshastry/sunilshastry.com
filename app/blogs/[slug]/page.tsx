@@ -22,13 +22,10 @@ export async function generateMetadata({
 
 	const title = `${data?.title} | Sunil Shastry`;
 
-	const baseUrl =
-		process.env.NODE_ENV === 'development'
-			? 'http://localhost:3000'
-			: 'https://sunilshastry.com';
+	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
-	const ogImage = `${baseUrl}/api/og?title=${data?.title}&subtitle=${data?.subtitle}`;
-	console.log(ogImage);
+	const ogImage = `${baseUrl}/api/og?title=${encodeURIComponent(data?.title as string)}&subtitle=${encodeURIComponent(data?.subtitle as string)}`;
+
 	return {
 		title,
 		description: data?.description,
