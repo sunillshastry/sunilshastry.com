@@ -1,14 +1,13 @@
 import { ImageResponse } from 'next/og';
+import { NextRequest } from 'next/server';
 
 export const runtime = 'nodejs';
 
-export async function GET(request: Request) {
-	const { searchParams } = new URL(request.url);
-
-	const title = searchParams.get('title') ?? 'New blog';
+export async function GET(request: NextRequest) {
+	const title = request.nextUrl.searchParams.get('title') ?? 'New blog';
 	const subtitle =
-		searchParams.get('subtitle') ??
-		'View new post on https://sunilshastry.com/blogs';
+		request.nextUrl.searchParams.get('subtitle') ??
+		'Available at https://sunilshastry.com/blogs';
 
 	return new ImageResponse(
 		(
