@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 import { NextRequest } from 'next/server';
 
-export const runtime = 'nodejs';
+export const runtime = 'edge';
 
 export async function GET(request: NextRequest) {
 	const title = request.nextUrl.searchParams.get('title') ?? 'New blog';
@@ -74,6 +74,13 @@ export async function GET(request: NextRequest) {
 		{
 			width: 1200,
 			height: 630,
+			headers: {
+				'Content-Type': 'image/png',
+				'Cache-Control':
+					'no-store, no-cache, must-revalidate, proxy-revalidate',
+				Pragma: 'no-cache',
+				Expires: '0',
+			},
 		}
 	);
 }
