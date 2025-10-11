@@ -37,7 +37,7 @@ const mdxRemoteComponents = {
 	),
 
 	li: (props: ComponentPropsWithoutRef<'li'>) => (
-		<li className="my-4" {...props} />
+		<li className="my-4 leading-9" {...props} />
 	),
 
 	a: (props: ComponentPropsWithoutRef<'a'>) => (
