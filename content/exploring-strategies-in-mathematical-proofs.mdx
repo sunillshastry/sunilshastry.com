@@ -1,0 +1,277 @@
+---
+slug: 'exploring-strategies-in-mathematical-proofs'
+title: 'Exploring Strategies in Mathematical Proofs'
+subtitle: 'The truth in mathematics and the mathematics of truth'
+date: '2025-10-11'
+duration: '18 minutes'
+description: 'Sunil Shastry talks about mathematical proofs: what they are, why they are needed and how they can help. Sunil Shastry explores numerous proof methods in mathematics and computing describing its theory and practicality, and provides step-by-step examples.'
+---
+
+Mathematical proofs form the backbone of logical reasoning in various sectors, serving as the standard for establishing truth in mathematics. As a lawyer would be inconsequential without their facts and evidence, a mathematician or a scientist is flawed with an inability to deduce their hypothesis and experiments without proof. A proof is not merely an educated calculation or a solution; instead, a proof is a set of carefully structured argument(s) that demonstrate why “something” (typically a statement, claim, or a condition) must be **true**, leaving no room for any ambiguity or doubt. Proofs, in general, but even more so in mathematics, are crucial because they provide a sense of not only certainty, but also credibility. The idea of proofs makes their influence far beyond just mathematics; however, fields like computing, physics, cryptography, and more rely and extend heavily on the practice of proof-making to ensure correctness and efficiency. Here, we will explore some common proof-writing techniques in mathematics and computing logic, and we will see how these proofs are vital in algorithm design, and how we can reason, build, and trust the techniques we design.
+
+In this sequence, we will walk through several methods for proofs and proving methods. Some of the most common and efficient ones in mathematics and computing include: **direct proof, proof by contrapositive, proof by contradiction, mathematical induction, weak and strong mathematical induction**.
+
+## To prove, or not to prove, that is the question
+
+Before we get our hands dirty with the different ways to prove a claim in mathematics, we must take a step back and comprehend what it means to prove something - what is a proof? Why do we need to prove something? How can proofs help in mathematics and computing?
+
+At its foundational level, a proof is a logical argument that tries to demonstrate why a statement or claim must be either true or false. It typically begins with some assumptions we take as self-evident, or as mentioned, and then proceeds through a sequence of logical and systematic deductions to reach a conclusion. Each step in this process will follow through from the previous ones, and also provide new context and prerequisites for the following step, leaving no doubt, uncertainty, or opportunities for different interpretations. Performing this process can be done in multiple ways through many devised proving methods and techniques that are known to us; picking a method is factored by the type and form of proof we wish to devise.
+
+While answering the question about why we need to prove something, we can notice how proofs in a mathematical or scientific context can not only convince and “prove” something to the reader, but they also explain. The steps involved in a proof showcase the underlying structure and the core reasons why a statement or claim must be true. Ultimately, when making an attempt to prove a conjecture, it is often possible to gain a deeper understanding or surprisingly catch and investigate any flaws or shortcomings in your claim, within its underlying theory. On other occasions, a statement's truth value can be genuinely unknown. The very act of constructing a proof, even a failed attempt, can be a primary tool of discovery, forcing the mathematician or the reader to fully engage with the concepts and leading them toward the correct formulation or a new theorem entirely. All-in-all, it is pretty evident how important it is to prove a statement or a claim in science and mathematics; the very fabric of these disciplines was built upon various figures undergoing this process to bring new mathematical and scientific laws to our knowledge. Now that we comprehend what proofs are and notice how crucial it is in our work in these fields of science, we will see some of the popular techniques and methods to prove a mathematical statement(s).
+
+## Our little proof's toolbox
+
+In mathematics and computing, there are a few common methods of proof - a way to logically show that a claim or a statement is either true or false, we will see how these differ by theory by examining one or more examples for each case, this way we can recognize the difference in methods and pick the right method or technique to draft our proofs.
+
+### Direct Proof
+
+In its simplest form, a direct proof shows that, provided there is a hypothesis or statement, let's say `P(x)`, then for all values of `x`, if `P(x)` is true, then the conclusion statement, say, `Q(x)` will also be true. It follows a _“if X, then Y”_ structure. In its mathematical form, it can be devised as follows:
+
+For all values of `x`, `P(x) ⇒ Q(x)`.
+
+A direct proof shows that a statement in the form mentioned above is true by simply assuming that the hypothesis part `P(x)` and by using some sort of logical procedure, be it - theoretical definition, arithmetic, algebraic, or logical steps to arrive at the conclusion `Q(x)`. In Feynman's terms, take what you're provided in the hypothesis (`P(x)`) and logically (using algebra, arithmetic, or theoretical definitions and/or facts), deduce the part you wish to prove, in our case, the conclusion part (`Q(x)`).
+
+To mathematically structure it formally, we prove the universal implication `∀x ∈ Z: P(x) → Q(x)` _(read as: "there exists `x` in `Z` such that `P(x)` implies `Q(x)`"; this mathematical statement means: "there exists a value `x` that belongs to the set `Z`, which is the set of integers, such that the statement `P(x)` implies or proves `Q(x)`")_ by direct proof:
+
+- Here, let `x` be an arbitrary value (integer) that belongs to the set or domain `Z`.
+- Next, we assume that `P(x)` is our hypothesis.
+- Deduce `P(x)` with the provided or known definitions or equivalent forms.
+- Apply any potential arithmetic, algebraic or any known definitions step-by-step to transform the assumption towards `Q(x)`.
+- Conclude and show the final conclusion or result - if `Q(x)` is either true or false based on our hypothesis from `P(x)`.
+- If our conclusion was true, we can state that since it was true for an arbitrary value `x` which was integer and belonged to set `Z`, we can state that the proven implication will hold true for any and all values of `x` such that `x` belongs to the set `Z`.
+
+**Example:**
+
+_**Statement/claim**: For every integer `n`, if `n` is odd, then `n^2` must also be an odd integer._
+
+From the statement, we can gather the facts provided to us:
+
+- We know that `n` is any integer.
+- If `n` is an odd integer value, then the square of `n` must also be an odd integer value
+
+By the definition of odd integers, there must exist another arbitrary integer value, say `k`, such that the expression `n = 2k + 1` is true for the integers `n` and `k`.
+
+Now that we have our expression for odd integer values: `n = 2k + 1`, we can escalate it by taking the squared values on both sides: `(n)^2 = (2k + 1)^2`. By solving this:
+
+```text
+// proof
+(n)^2 = (2k + 1)^2
+(n)^2 = (2k)^2 + (1)^2 + 2 . (2k) . (1)
+(n)^2 = 4k^2 + 1 + 4k
+(n)^2 = 4k^2 + 4k + 1
+(n)^2 = 2 (2k^2 + 2k) + 1
+```
+
+At this stage, if we consider the inner expression `(2k^2 + 2k)` to be another arbitrary integer (which it is), let's say `j` such that `j = 2k^2 + 2k` where `k` is an integer value, then we get:
+
+`(n)^2 = 2j + 1`
+
+This proves our initial criteria that we mentioned for odd numbers (`n = 2k + 1`), where in this case we take that the square of `n` is equal to `2j + 1`, where `j` is also an integer value. Provided this, we can now confirm that the square of an odd integer value `n` is also an odd integer. Furthermore, since it proved it for an arbitrary integer, we can confirm that this statement or “theory” is true for all and every odd integer value.
+
+### Proof by Contrapositive
+
+Proving statements and claims by contrapositive takes the approach we talked about in the direct proof method and extends it by proving the other way around. In short, if we imply that the statements or claims `P` and `Q` as `P ⟹ Q` is true, then the proof of contrapositive checks if `~Q ⟹ ~P` is true. That is, if the “true” statements of `P` and `Q` are valid, then the “false” or negated statements `~Q` and `~P` must also be valid. The two statements, `P ⟹ Q` and `~Q ⟹ ~P`, are logically equivalent as well. So by proving it in its contrapositive version, we prove it in the original statement too. The “`~`” sign indicates that a statement is false or negated.
+
+Think of the contrapositive method as proving the statement backward: instead of starting from `P` and making our way to `Q` logically or algebraically, as we did in the direct proof technique, we assume that if `Q` is false, then `P` must also be false. This approach can sometimes be helpful when it's easier to deal with proving something to be false rather than true.
+
+To mathematically structure it formally, we prove the universal implication `∀x ∈ Z: ~Q(x) → ~P(x)` _(read as: "there exists `x` in `Z` such that `~Q(x)` implies `~P(x)`"; this mathematical statement means: "there exists a value `x` that belongs to the set `Z`, which is the set of integers, such that the statement `~Q(x)` implies or proves `~P(x)`")_ by proof of contrapositive:
+
+- Here, let `x` be an arbitrary value (integer) that belongs to the set or domain `Z`.
+- In this stage, we assume that our hypothesis is actually `Q(x)` (and not `P(x)`)and additionally, we negate this hypothesis into `~Q(x)` and then we assume this to be our actual true and valid hypothesis.
+- Similarly, as we did in the direct proofs, we apply any potential arithmetic, algebraic or any known definitions step-by-step to transform the assumption towards `~P(x)`.
+- Conclude and show the final conclusion or result - if `~P(x)` is either true or false based on our hypothesis from `~Q(x)`.
+- If our conclusion was true, we can state that since it was true for an arbitrary value `x` which was integer and belonged to set `Z`, we can state that the proven implication will hold true for any and all values of `x` such that `x` belongs to the set `Z`.
+
+**Example:**
+
+_**Statement/claim**: For every integer `n`, if `n^2` is even, then `n` is even._
+
+From the statement, we can gather the facts provided to us:
+
+- We know that the value `n` can be any integer - positive, negative, even or odd integer value.
+- Furthermore, if the value of `n^2` is even, then we can confirm that the initial value, `n` was indeed an even integer value.
+
+Mathematically, we can structure this as: `∀n ∈ Z; (if n^2 is even) ⇒ (n is even)`
+Now, we can prove this using the **proof of contrapositive** by arranging our `P(x)` and `Q(x)` as per the proof of contrapositive technique discussed earlier:
+
+```text
+#
+P(x) = "(if) n^2 is even"
+~P(x) = "(if) n^2 is not even (n^2 is odd)"
+#
+Q(x) = "n is even"
+~Q(x) = "n is not even (n is odd)"
+#
+P(x) ⇒ Q(x): "if n^2 is even, then n is even"
+~Q(x) ⇒ ~P(x): "if n is odd, then n^2 is odd"
+```
+
+We know that the value `n` can be any arbitrary integer value, as stated in our statement, and by the definition we previously used, if `n` is an odd integer value, then there exists another integer value `k` such that it has a relationship with `n` as `n = 2k + 1` where `n` is an odd integer value and `k` is just an arbitrary integer value.
+
+Now that we know the value for `n`, we can check and find for `n^2`:
+
+```text
+// proof
+(n)^2 = (2k + 1)^2
+(n)^2  = (2k)^2 + (1)^2 + 2 . (2k) . (1)
+(n)^2 = 4k^2 + 1 + 4k
+(n)^2 = 4k^2 + 4k + 1
+(n)^2 = 2(2k^2 + 2k) + 1
+```
+
+Again, at this stage, we can consider the inner expression `(2k^2 + 2k)` to be another arbitrary integer (which it is), let's say `j` such that `j = 2k^2 + 2k`, where `k` is an integer value, then we get:
+
+`(n)^2 = 2j + 1`
+
+Again, this proves our initial criteria that we mentioned for odd numbers (`n = 2k + 1`), where in this case we take that the square of `n` is equal to `2j + 1`, where `j` is also an integer value. Provided this, we can now confirm that the square of an odd integer value `n` is also an odd integer. Furthermore, since it proved it for an arbitrary integer, we can confirm that this statement or “theory” is true for all and every odd integer value.
+
+Lastly, proving it for the statement as `~Q(X) ⇒ ~P(x)` also implies that we are proving it for the statement `P(x) ⇒ Q(x)`, since these two statements are logically equivalent (proving one means you're also proving the other), and this way using the proof of contrapositive, we have proved our claim.
+
+### Proof by Contradiction
+
+A **proof by contradiction** proves a statement or a claim by showing that denying the statement leads to a logical impossibility (a contradiction). Concretely, to prove a statement or a claim, let's say `S`, we assume that: the opposite exists, in our case `~S`, and we derive the logical steps and process to reach this stage for `~S` and try to reach some sort of contradiction that is logically not equivalent (this could be mathematical and/or logical with something like `0 = 1` which is not equal, therefore, our LHS ≠ RHS under any specified assumptions given).
+
+This method is quite straightforward in the sense that we are supposed to search, aim, and prove for an incorrect or invalid stage within our statement or claim, stating that by making it contradict one way, we are able to establish the validity and truth of our original statement.
+
+**Example (1)**
+
+_**Statement/claim**: There is no smallest positive rational number._
+
+Before we get on with the proof, let's say what a rational number even is (for readers unaware of this set of numbers). A rational number, `r`, is any number that can be expressed as a fraction or ratio. Let's take two integers, `a` and `b`, such that `a` can be any positive integer value, and `b` is not `0`. As long as `b` is not `0`, we can represent the rational number, `r`, as `r = a / b`.
+
+Returning to our proof, our statement claims that there is no smallest positive rational number. To solve and prove this by the proof of contradiction method, we try and prove the opposite of the provided statement or claim, thus reaching a potentially illogical conclusion, which helps us prove the statement otherwise.
+
+We will now assume that there does exist a smallest positive rational number. In our case, let's call it `r` again. Since `r` is a rational number, we can deduce that `r = a / b` such that `a` and `b` are positive integers, and `b` is not `0`.
+
+Similar to `r`, let's take another rational number, say `e`, such that `e = (r / 2) = (a / 2b)`.
+
+At this stage, we have both `r` and `e` as our rational numbers, where `r = (a / b)`, and `e = r / 2`. Considering both our rational numbers, we can clearly notice that `r > e` because the value of `e` is half times of `r` `(r * 1/2 or r / 2)`. With this relationship, we have `2e = r`, where we know both `e` and `r` are rational numbers. This means that there is at least one smaller positive rational number. Therefore, since our newer assumption was to assume that there exists a smaller rational number, this contradicts our assumption that the base rational number `r` was the smallest rational number to exist. Hence, our assumption is false (or contradicted).
+
+**Example (2)**
+
+_**Statement/claim**: If `3n + 2` is an even integer, then `n` is even._
+
+From the statement, we can gather the facts provided to us:
+
+- We have the expression `3n + 2` where `n` is an integer.
+- This means that the mathematical structure is: `∀n ∈ Z: (3n + 2 = even) ⇒ (n = even)`.
+- We need to prove that there must be at least one value of `n` where `3n + 2` is even, but `n` is not even, to prove it by contradiction.
+
+Our mathematical structure for proving it by contradiction is `∃n ∈ Z: (3n + 2 = even) ⇒ (n = odd)` _(read as: “there exists at least one value `n` that belongs to the set `Z`, the set of integers, where the `3n + 2` is even, and `n` is odd)_. We will now see if we can achieve this through proof by contradiction.
+
+Since we know `n` is odd from our newer assumption, we can take `n`'s value as `n = 2k + 1`, where `k` is an arbitrary integer value. Substituting this into our provided expression:
+
+```text
+// proof
+3n + 2
+(we know n = 2k + 1)
+3(2k + 1) + 2
+6k + 3 + 2
+6k + 5
+2(3k + 2) + 1
+```
+
+Since we know that `k` is an integer value, we can substitute the expression `3k + 2` into another arbitrary integer value, say `j`; here, we know `j` is indeed an integer since `k` is an integer, and the sum or product of integers will also result in an integer value. This now gives us the new expression `2j + 1`, which is actually still an odd integer number. For any arbitrary value of `j`, the expression `2j + 1` will always result in an odd number. This means that our assumption that there exists at least one number `n` where `3n + 2` is even and n is odd is false. Since our made assumption is false or does not exist, this means that the original assumption that there exists `n` where `3n + 2` is even and `n` is also even is valid and correct. Hence, using the proof of contradiction, we are able to deduce that the original statement provided to us is actually true. This approach of solving for the opposite of the provided statement, or claim shows how we can prove something by the proof of contradiction.
+
+### Mathematical Induction
+
+One of the most popular methods for proofs in mathematics and computing is mathematical induction. Mathematical induction is used specifically for the set of all whole numbers, `W`. Consider having infinite steps, where each step, say `a`, starts at `a, a + 1, a + 2, a + 3...`; mathematical induction takes these steps, starting at `a`, which we consider as the **“base case”**, and there exists some value `k` which implies that, if the step at `k` is valid, then the step `k + 1` must also be valid. This is the induction part of our proof.
+
+In other words, Mathematical induction is a proof technique used to establish that a given statement or claim, `P(n)`, is true for all natural numbers `n` (or all integer values greater than or equal to some initial number, `a`). It is based on the well-ordering principle of the natural numbers, which states that every non-empty subset of natural numbers has a smallest element. This principle guarantees that if something is true for the first case and every step logically leads to the next, then it must be true for all steps. When the base step is valid, we need to check if it is valid for an arbitrary positive integer, `k`, and if this were to be true, it would be valid for `k + 1` too. The structure itself looks something like this:
+
+**Base case**: We verify that the statement or claim `P(n)` is true for the initial value, often, this value is either `n = 0` or `n = 1`, depending on the statement itself. Provided this step is satisfied, we move to the induction step.
+
+**Induction case**: We know that the statement `P(n)` was true for `n` when `n = 1` or `n = 0`; now we check if the statement is true for `n = k`, where `k` is an arbitrary positive integer value. When `n = k`, our new statement becomes `P(k)`. This is also known as the inductive hypothesis. Upon proving the statement holds for `P(k)`, we need to now also prove it for `P(k + 1)`, which implies that: `P(k) ⇒ P(k + 1)`. If both of these steps (`P(k)` and `P(k + 1)`) are valid, the base statement `P(n)` is proven to be true for all `n >= base case` (where base case number is typically either `0` or `1`).
+
+In addition to the regular mathematical induction, we have two variants within this: **weak mathematical induction** and **strong mathematical induction**.
+
+**Weak Mathematical Induction**
+
+Similar to our regular mathematical induction, if a statement, `P(n)`, is true for the first natural number (the base case), and whenever it is true for some positive integer, `k`, and it is also true for `k + 1`, then it will be true for all natural numbers.
+
+**Base case**: Prove `P(n)` for the base case, `P(0)` or `P(1)`, where `n` is equal to `0` or `1`.
+**Inductive case**: Assume that there exists an arbitrary positive integer value, `k`, and prove the statement for this value is `P(k)`. If the statement holds for `P(k)`, then prove for `k + 1`, and the statement `P(k + 1)`.
+
+If both statements are valid in the inductive step, then the initial statement `P(n)` is true for all natural numbers, such that `n > 1` or `n = 1`.
+
+**Example:**
+
+_**Statement/claim**: For all natural numbers, `n`, such that `n >= 1`_.
+
+```text
+#
+1 + 2 + 3 + ... + n = (n (n + 1)) / 2.
+```
+
+i.e, the sum of the first `n` natural numbers equals `(n (n + 1)) / 2`.
+
+**Base case**: when `n` is equal to `1`.
+
+```text
+# proof
+LHS = 1
+RHS = (n (n + 1)) / 2
+RHS = (1 (1 + 1)) / 2
+RHS = (1 (2)) / 2
+RHS = 2 / 2
+RHS = 1
+#
+Therefore, LHS = RHS for our base case when n = 1.
+```
+
+**Inductive case**: for an arbitrary positive integer value, `k`, and when `n = k`:
+
+Here we assume that `1 + 2 + 3 + ... + k = (k (k + 1)) / 2`.
+
+We will use this assumption to prove it is true for `n = k + 1`.
+
+Considering `n = k + 1`:
+
+```text
+# proof
+LHS = 1 + 2 + 3 + ... + k + (k + 1).
+#
+But from the inductive step, we know that:
+(1 + 2 + 3 + ... + k) = (k (k + 1)) / 2.
+#
+We plug this value back into our LHS equation:
+((k (k + 1)) / 2) + (k + 1)
+(k(k + 1) + 2(k + 1)) / 2.
+((k + 1)(k + 2)) / 2
+```
+
+The above equation `((k + 1) . (k + 2)) / 2` is exactly equal to our formula `n = k + 1`.
+
+`((k + 1) ((k + 1) + 1)) / 2`
+
+Hence, the statement holds true for `n = k + 1`.
+
+Here we proved the statement at three different stages: the base step, the initial induction step at `n = k`, and the final induction step at `n = k + 1`. By doing so, we have correctly proved the provided statement by weak mathematical induction.
+
+**Strong Mathematical Induction**
+
+Contrary to the typical mathematical induction assumption of considering `P(k)` to be true, in strong mathematical induction, we now assume all the previous steps, `P(1), P(2), P(3), ..., P(k)`, are true, and then use this to prove the `P(k + 1)` statement.
+
+**Base case**: Prove either `P(0)` or `P(1)` for the base step where `n = 0` or `n = 1`.
+**Inductive case**: We assume that the statements for `P(1), P(2),..., P(k)` are all true; we only prove the final statement, which is `P(k + 1)`.
+
+The strong induction is especially useful when proving statements where `P(k + 1)` depends on multiple earlier values, for example, properties of sequences like the Fibonacci numbers or factorization properties.
+
+**Example:**
+
+_**Statement/claim**: Every natural number, `n`, such that `n >= 2`, can be written as a product of prime numbers._
+
+**Base case**: For our base we take the value `n` to be `2`, i.e, `n = 2`. For `n = 2`, `2` is a prime number, and a prime is considered a product of itself (a single prime factor). Thus, this way, the initial base case is true for our statement `P(n)` when `n = 2`.
+
+**Inductive case**: Now, assuming that the statement, `P(n)`, is true for all natural numbers from `2` _(our base number)_ and up to some arbitrary value, `k`, where `k` is a positive integer value. This means that every integer, say `i`, such that `2 <= i <= k`, can be written as a product of prime numbers. We need to show that the statement is also true for `n = k + 1`. In this case, there are two possibilities for `k + 1`.
+
+- `k + 1` is a prime number - then it's already a product of primes (itself).
+- `k + 1` is not a prime number (it is a composite number) - That means we can write `k + 1 = a . b`, such that `2 <= a,b <= k`.
+
+By the inductive step, since both `a` and `b` are between `2` and `k`, each of them can also be written as a product of primes (itself). Therefore, `k + 1 = a . b` is now also a product of primes.
+
+From this, we have proved our statement `P(n)` for the base case where `n = 2`, and we have shown that if it holds up for all numbers up to `k`, it will also hold up for the number `k + 1`. By the principle of strong mathematical induction, the provided statement, `P(n)`, is true for all `n >= 2` integer values. Therefore, the statement is true and proven valid by strong mathematical induction.
+
+This wraps up our survey of proofs and different ways of implementing them. As we have seen, mathematical proofs are the foundation of logical reasoning in mathematics, computing theory, and beyond. They transform intuition and conjecture into certainty through systematic argumentation. Whether through direct proof, contrapositive reasoning, contradiction, geometric logic, or mathematical induction, each method offers a unique lens to uncover truth and structure within mathematics.
+
+### _Thank you for reading this blog! Until next time._ 👋🏻
