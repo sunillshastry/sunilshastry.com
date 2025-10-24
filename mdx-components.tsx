@@ -41,7 +41,12 @@ const mdxRemoteComponents = {
 	),
 
 	a: (props: ComponentPropsWithoutRef<'a'>) => (
-		<a className="underline underline-offset-4" {...props} />
+		<a
+			className="underline underline-offset-4 transition duration-75 ease-linear hover:text-sky-600"
+			target="_blank"
+			title="Opens in a New Tab"
+			{...props}
+		/>
 	),
 
 	img: (props: ComponentPropsWithoutRef<'img'>) => (
