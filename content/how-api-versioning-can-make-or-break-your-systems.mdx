@@ -1,0 +1,121 @@
+---
+slug: 'how-api-versioning-can-make-or-break-your-systems'
+title: 'How API Versioning Can Make or Break Your Systems'
+subtitle: 'Semantic software versioning standards for the rest of us'
+date: '2025-10-24'
+duration: '15 minutes'
+description: 'Sunil Shastry talks about API versioning - what it is and how it can be helpful in modern software development. Sunil Shastry clarifies and provides prerequisite information about APIs and versioning, and explains its use-cases with basic case study in large-scale enterprise and small-scale custom example.'
+---
+
+Versioning in general, within the computer science and software engineering sectors, is exceedingly important. We have seen many popular applications, products, and SDKs _(Software Development Kits)_ being versioned in numerous ways and formats throughout their lifespan, and to be honest, the theory and practicality involved in versioning software alone can be a difficult and complex topic. Unsurprisingly, likewise to many other practices within software engineering, software versioning can be and is implemented in a number of ways - each company, but also each team within a company, does it differently when it comes to software versioning. There is no one solution to rule them all; the entirety of software versioning comes down to product requirements, compatibility, scalability, and any further potential business logic or company necessities. Although software versioning is relevant to an uncountable number of sub-branches within the discipline of software engineering, we will selectively see how API versioning is beneficial to our applications and systems, specifically the backend side of it. We will explore and discuss if and when versioning is helpful, when it's not, and, more importantly, how complex versioning can be managed in a growing codebase.
+
+## APIs: Our broker to frontend and backend systems.
+
+Our main goal in this article is to highlight the significance of versioning our software applications, but a vital question to point out is to figure out which, and what part of our software, needs versioning that does more good than bad, from the perspectives of someone who is building and using the software application. We briefly mentioned how we will selectively talk about API versioning here, and although it is pretty specific to one subset within software engineering, a bulk of the principles we will encounter about versioning itself can be theoretically and practically applied to other aspects of software engineering. APIs (or just API) stand for **Application Programming Interface(s)**, and as you can tell by the sub-title, APIs act as our middleman or a _[“broker”](https://en.wikipedia.org/wiki/Broker)_ that supports some form of communication or data transaction between any two software interfaces. To be fair, the term API has a pretty broad technical definition, and it can be _(and is often)_ used to define a number of software that act as an intermediary between other software.
+
+To make it a lot simpler for the readers, we will limit our understanding and definition of APIs to a piece of software that acts as a bridge or communication barrier between the frontend and the backend systems. In this context, the frontend acts as the user interface for customers. A high-level example of frontends includes something like a website, mobile application, ATMs, digital screens to operate appliances, etc. Frontends provide us with a platform to access, view, alter, delete, and perform some kind of actions with our data. Alternatively, the backend systems are a lot less user-interface-focused systems - they handle the bulk of the logic that makes the frontend perform the way it is intended to work. Backends handle important functionality and some business logic, such as managing data within the database, handling secure authentication of users from the frontend, and limiting and allowing access to users based on their role, and so much more. Modern frontend and backend systems of software applications often perform plenty more tasks than what were listed above. It is practically impossible and redundant to know the specifics and capacity of these systems; our main objective here is to give a general understanding of frontend and backend systems to readers who may be unfamiliar with them from a software engineering viewpoint.
+
+With our common and basic understanding of what frontend and backend systems are, we will see how APIs add the communication layer between the two systems. Here is an example: let's say we have an application _(in this case, let's say a website)_ that just displays the top 10 most liked food dishes of all time, pretty straightforward - a user visits the website `www.top10dishes.com` and they simply see a list of 10 dishes in the order of most liked, with number one being the most liked. From our case, if you could already tell, our frontend is a website that can be accessed by users on a browser via the internet. Next, let us assume that we have the data and information about the dishes in some arbitrary database _(the specifics of the database and the kind of data are irrelevant in our case and beyond the scope of our main goal)_, and likewise, we have a backend systems that assists our frontend system by providing the information about the top 10 dishes _(here our backend fetches the data from the database and must return it in a formatted structure)_. At this stage, it might seem pretty simple, and users can take it for granted that the backend system sends the formatted **“top 10 dishes”** data to the frontend, but the reality is, the developer must set up the mode of communication between their frontend and backend, and decide how it must be done. There are many modes of communication between the frontend and the backend; one of the most popular modes is **REST** _(Representational State Transfer)_.
+
+In the simplest of terms, **REST** is both a pattern and an architectural process to initiate and perform a one-to-one means of communication between the frontend and backend. From our earlier definition of APIs, we mentioned how APIs are the communication bridge between two software; we bring this back as we see a similar relationship to that of REST, and sure enough, REST is indeed an API, which is most common between software applications with a frontend and a backend interface. REST contains a structured endpoint route defined by the backend that allows the frontend developers to make an [HTTP request](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview) to the backend _(from that endpoint route defined)_ and gain the information from the backend as necessary. From our earlier frontend website, the `www.top10dishes.com`, the backend team/developer could set up their REST API in such a manner that if the frontend developer makes an [HTTP request](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview) to their backend REST API via the structured endpoint route, say `www.top10dishes.com/api/top-dishes`, they would get their raw data about the top 10 dishes that they can then implement a much nicer interface that displays the raw data in a more user-friendly format to the people accessing the website. It is important to point out that the `/api/*` portion of the website is often a convention within REST API, which makes it easy for the frontend and backend teams to manage and differentiate their endpoint routes _(for instance, the route `www.example.com/users/alan-turing` would conventionally display the user profile of a user named Alan Turing in a nicely formatted, human-readable way, while `www.example.com/api/users/alan-turing` would conventionally return with the raw data from the backend to anyone requesting it in this manner)_.
+
+In a nutshell, APIs are simply a piece of software that acts as a communication bridge between two other software. APIs are vital for software development and applications as a whole, as they provide a means to abstract software functionality into different and respective branches, and provide the consumer with a more efficient communication means to request the functionality/data when and if it is necessary. With this knowledge about what APIs are and how they are helpful to developers and users alike, we will see where API versioning comes into the picture in all of this. However, before we delve into API versioning, we will see a few important points about versioning in software engineering in a general manner, and why it might even be required in the first place.
+
+## Versioning in software engineering - why it matters.
+
+In the disciplines of computer science, and specifically software engineering and development, versioning is an essential aspect for an organized and structured growth of software. Oftentimes, the ideas and procedures of versioning software can be either **explicit** or **implicit**, depending on the complexity of the software itself, its usability, and the number of developers in a team working on it. For instance, if an independent software developer is working on their product, and assuming the product is not too complex, versioning can often be **implicit**; on the contrary, a team of developers working on a large-scale software application or a game will most certainly require **explicit** versioning standards within their product development.
+
+When we state that the versioning is implicit, as a software developer, this means the versioning standards for an independent or a small group of developers follow fewer conventional standards and requirements to strictly version their product - this includes simple versioning by feature, or more commonly just through **version control**, such as Git. The implicit method of versioning software through version control is a long, battle-tested approach to labeling “versions” of small, medium, and large-scale changes to the codebase and the subsequent software application. Small and large teams of developers use version control such as Git on a regular basis to perform small and simple implicit version management with their larger codebase - this is an industry standard requirement at all levels. Git _(and other version control systems)_ itself can offer more features, but in our case here, specifically for independent and small teams of developers, Git is a great tool for implicit software versioning. Furthermore, Git offers options such as `git tag` to make implicit versioning even more specific and helpful to developers and reviewers. It is important and part of the developer's responsibility to understand the complexity of their application and its use cases, and perform versioning as it scales.
+
+On the other side of the spectrum, as an independent developer or small teams of developers start out with implicit software versioning with modern tools such as git tag and more, enterprise-level industries with numerous teams and a massive number of developers working require a much conventionally recognized explicit versioning system that mirrors the complexity and scale of the software application that they work on. Explicit versioning conventions fall anywhere between having numerous codebases determined by their version itself, or with different teams at companies that work on different versions at the same time. The core procedures followed in explicit versioning can be different at most companies, but an important convention within software development and engineering is to version software products that are **“reverse compatible”**. In simple terms, when a piece of software has the ability to work accurately with older or previous versions of itself, it is termed as reverse compatible. The notion of reverse compatibility is important in software development, and you will see this design applied to all software to some degree. For instance, when a new version of Android is released by Google, they ensure that the latest released Android version is compatible with most if not all the software applications on Google Play Store that worked on the previous stable Android version; this may seem pretty simple when read, but the underlying complexity, design, and compatibility procedures involved can take months of work, even with highly-skilled teams of developers. At the level of Android and Google, the versioning factor alone requires thorough detail, work, and tests to ensure versioning is done correctly amongst thousands of teams and developers. This level of explicit versioning can often be found publicly available to all users to read more about their policies and conventions used in versioning. From our example with Android and Google, we have public access to see the different Android versions released by Google, and additionally, some short and long-term support (LTS) offered by Google based on the specific Android versions. This shows how a big company such as Google offers dedicated support teams not just based on their domain _(Google Search, Google Maps, Android, etc)_, but based on specific versions within one domain _(Android)_. To see more about Android versioning and its support from Google, visit the [Android Releases](https://developer.android.com/about/versions) page.
+
+At this stage, we can comprehend how important and complex versioning can be in software engineering and development. We saw how software versioning can be categorized into implicit and explicit versioning, and by going through each of them, we noticed how they can be differentiated and how each of them helps with the scaling of the software application in question. As mentioned earlier, it is the responsibility of the software developer or the development team to understand the complexity of their software application to ensure the right form of versioning can be implemented with industry-standard conventions to warrant that their application is structured and has an organized growth in its lifespan.
+
+## Gluing together our APIs with versioning
+
+We have gone through a pretty comprehensive overview of a bunch of things in small and large-scale software development. We discussed APIs and how they help build software with smooth interaction means with other software, in our case, between frontend and backend systems. Next, we studied how versioning in software application development can be a big milestone based on the complexity of the software application, the different forms of versioning in software development - implicit and explicit versioning, with one basic case study of explicit versioning in Android software by Google. While examples are surely helpful and provide a foundational understanding to readers who are new to this idea and haven't witnessed a practical use case of versioning prior to this, we will now go through our own little versioning system with our REST API that we discussed earlier with the `www.top10dishes.com` website application. With close regard to our backend system REST API primarily (`www.top10dishes.com/api/*`), we will see how we can version our APIs for structured longevity and organized scalability, all while following industry-standard conventions and best practices.
+
+As previously mentioned numerous times, we said that it is the developer's responsibility to determine the kind of versioning their software application requires. Oftentimes, as a rule of thumb, we recommend starting with implicit versioning and migrating to explicit versioning as the software application grows. To illustrate an example of our own versioning system with our backend system, we will arbitrarily assume that our application requires explicit versioning; that is, let us simply assume that our backend system is already complex enough that it manages compound data functionalities and requires explicit versioning before building new features or add-ons. From our initial REST API endpoint route that we defined and discussed - `www.top10dishes.com/api/top-dishes`, let's say that it returns us with the raw data about the top 10 most liked dishes in the [JSON](https://en.wikipedia.org/wiki/JSON) format, which might conventionally look something like this _(very basic version)_:
+
+```json
+//
+[
+	{
+		"id": 1,
+		"name": "Pizza",
+		"votes": 55000
+	},
+	{
+		"id": 2,
+		"name": "Biriyani",
+		"votes": 30000
+	},
+	{
+		"id": 3,
+		"name": "Ramen",
+		"votes": 27000
+	},
+	{
+		"id": 4,
+		"name": "Hamburger",
+		"votes": 25000
+	},
+	{
+		"id": 5,
+		"name": "Tacos",
+		"votes": 19000
+	},
+	{
+		"id": 6,
+		"name": "Gyro",
+		"votes": 16500
+	},
+	{
+		"id": 7,
+		"name": "Pasta",
+		"votes": 12350
+	},
+	{
+		"id": 8,
+		"name": "Paella",
+		"votes": 7230
+	},
+	{
+		"id": 9,
+		"name": "Sushi",
+		"votes": 6700
+	},
+	{
+		"id": 10,
+		"name": "Pad Thai",
+		"votes": 3100
+	}
+]
+```
+
+This JSON response that was sent from our backend system via the REST API endpoint route (`www.top10dishes.com/api/top-dishes`) follows a simple structure with the properties - `id`, `name`, and `votes`. We can assume that this is our initial version with just three properties that will be sent as a response. Conventionally, with REST APIs, we can explicitly version our endpoint routes such that they define a specific version (let's say version 1 or `v1`). We now refactor our endpoint route to either `www.top10dishes.com/api/v1/top-dishes` or to have a sub-domain as `www.v1.top10dishes.com/api/top-dishes`. These are the two most popular conventions for REST APIs within the frontend and backend systems, with an explicit versioning system in place.
+
+We mentioned how the structure of our raw data sent back by our backend system included three properties in version 1, and they were `id`, `name`, and `votes`. We also refactored our REST API endpoint route to incorporate the version identity of the API with either the `v1` prefix as a sub-domain, or as a suffix to the `/api/v1/*`. Let us assume our frontend is currently using the version 1 system, and for some reason, we want to change the term of the property `name` and rename it to `title`. There is probably no technical advantage or reason behind this change, but let us do it to encompass how this affects our current and future versions. If we changed our current implementation within version 1 to the new structure that looks something like this:
+
+```json
+//
+[
+	{
+		"id": 1,
+		"title": "Pizza", // Renaming 'name' property to 'title'
+		"votes": 55000
+	},
+	{
+		"id": 2,
+		"title": "Biriyani",
+		"votes": 30000
+	}
+	// the rest of the list
+]
+```
+
+If we were to implement this change without any regard to versioning or reverse compatibility, we are setting ourselves and our software applications up for a disaster. Our frontend is informed and developed in a way that it knows and depends on the three properties we defined in version 1 and which were `id`, `name`, and `votes`. By changing the property `name` to `title`, we are not updating our frontend automatically to inform it to recognize the name of the dish by the `title` property and not by `name`. This simply breaks out the frontend application, which means all the users visiting the website can now see nothing useful, or even worse, an unhandled error message. This is not at all an ideal outcome of our application, and in cases on a large scale, such as banking applications, hospital management systems, or others, can often cost a lot of money and can also incur legal troubles. As a conventional fix to the issue caused here, we will simply create a new **“version”** within our example application, which is still backward or reverse compatible.
+
+To begin, we will create a completely new route endpoint or sub-domain with the `v2` prefix/suffix to indicate that this is a new and later version of the previous `v1` version. Here, we kept it simple and titled it as `v2`, but versioning can be done differently and is left to the discretion of a software developer or the development team. Our new REST API route endpoint would look something like `www.top10dishes.com/api/v2/top-dishes` or `www.v2.top10dishes.com/api/top-dishes`. This makes it clear that the versioning standard is different, and another important aspect of it is that the initial version `v1` and its endpoint route `www.top10dishes.com/api/v1/top-dishes` is left untouched, which means it will work as it is intended to. Our new version's (`v2`) endpoint route (`www.top10dishes.com/api/v2/top-dishes`) will now be the “stable” endpoint that we can recommend the frontend consumers to use through some sort of documentation or guide, which also informs about the changes from `v1` and additional resources informing about the newer properties used, such as `id`, `title`, and `votes`. This not only keeps our versioning system consistent _(if we had a newer version, say `v3`, we can just redo this process of implementing a new REST API endpoint route and providing helpful documentation for frontend consumers about it)_, but also makes our software backward or reverse compatible without breaking anything, anywhere _(especially other software applications that depend on our API)_. Furthermore, with this practice, we also make it easy for ourselves to help our software application scale and grow smoothly. The entirety of this example encompasses how versioning takes place in modern software development, and although the practice of versioning can be done differently in most subsets within software development and engineering, this principle and notion behind versioning is all the same.
+
+### _Thank you for reading this blog! Until next time._ 👋🏻
