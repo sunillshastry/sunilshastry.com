@@ -52,7 +52,7 @@ export default function Page() {
 					I am an undergraduate student at the{' '}
 					<AnchorLink
 						href="https://usask.ca/"
-						title="University of Saskatchewan official website"
+						title="University of Saskatchewan (USask)"
 					>
 						University of Saskatchewan
 					</AnchorLink>
@@ -77,14 +77,14 @@ export default function Page() {
 					am particularly drawn to{' '}
 					<AnchorLink
 						href="https://www.britannica.com/science/linear-algebra"
-						title="Read more about Linear Algebra"
+						title="Linear Algebra (Britannica)"
 					>
 						Linear Algebra
 					</AnchorLink>{' '}
 					and{' '}
 					<AnchorLink
 						href="https://en.wikipedia.org/wiki/Discrete_mathematics"
-						title="Read more about Discrete Mathematics"
+						title="Discrete Mathematics (Wikipedia)"
 					>
 						Discrete Mathematics
 					</AnchorLink>
