@@ -52,7 +52,7 @@ export default function Page() {
 					I am an undergraduate student at the{' '}
 					<AnchorLink
 						href="https://usask.ca/"
-						title="University of Saskatchewan official website"
+						title="University of Saskatchewan (USask)"
 					>
 						University of Saskatchewan
 					</AnchorLink>
@@ -60,31 +60,31 @@ export default function Page() {
 					in Computer Science and a minor in Theoretical Mathematics. My
 					academic interests within computer science primarily focus on{' '}
 					<AnchorLink
-						href="https://en.wikipedia.org/wiki/Web_development"
-						title="Read more about web development"
+						href="https://aws.amazon.com/what-is/full-stack-development/"
+						title="What is Full Stack Development (AWS)"
 					>
-						Web Development
+						Full Stack Development
 					</AnchorLink>{' '}
 					and{' '}
 					<AnchorLink
-						href="https://www.spiceworks.com/tech/artificial-intelligence/articles/what-is-hci/"
-						title="Read more about HCI"
+						href="https://en.wikipedia.org/wiki/Distributed_computing"
+						title="Distributed Computing (Wikipedia)"
 					>
-						Human-Computer Interaction (HCI)
+						Distributed Systems/Computing
 					</AnchorLink>{' '}
-					, where I explore the design, functionality, and user experience
-					aspects of digital systems. In the field of mathematics, I am
-					particularly drawn to{' '}
+					, where I explore the design, functionality, scalability, and user
+					experience aspects of digital systems. In the field of mathematics, I
+					am particularly drawn to{' '}
 					<AnchorLink
 						href="https://www.britannica.com/science/linear-algebra"
-						title="Read more about Linear Algebra"
+						title="Linear Algebra (Britannica)"
 					>
 						Linear Algebra
 					</AnchorLink>{' '}
 					and{' '}
 					<AnchorLink
 						href="https://en.wikipedia.org/wiki/Discrete_mathematics"
-						title="Read more about Discrete Mathematics"
+						title="Discrete Mathematics (Wikipedia)"
 					>
 						Discrete Mathematics
 					</AnchorLink>
