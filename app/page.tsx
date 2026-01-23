@@ -1,7 +1,11 @@
 'use client';
-
 import AnchorLink from '@/components/anchor-link';
 import Paragraph from '@/components/paragraph';
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from '@/components/ui/tooltip';
 import { useTheme } from '@/context/ThemeContext';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
@@ -164,12 +168,16 @@ export default function Page() {
 				className={`mt-6 w-[50%] border-t ${theme === 'dark' ? 'border-white/25' : 'border-black/25'} pt-4 pb-4 text-gray-400 max-lg:w-full max-lg:pb-12`}
 			>
 				Or reach me out by email at{' '}
-				<span
-					className={`${theme == 'dark' ? 'text-white' : 'text-black'}`}
-					title="contact@sunilshastry.com"
-				>
-					contact [at] sunilshastry [dot] com
-				</span>
+				<Tooltip>
+					<TooltipContent>contact@sunilshastry.com</TooltipContent>
+					<TooltipTrigger>
+						<span
+							className={`${theme == 'dark' ? 'text-white' : 'text-black'}`}
+						>
+							contact [at] sunilshastry [dot] com
+						</span>
+					</TooltipTrigger>
+				</Tooltip>
 			</p>
 		</section>
 	);
