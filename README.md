@@ -4,7 +4,7 @@
 ![Website Status](https://img.shields.io/website?url=https://sunilshastry.com)
 ![License](https://img.shields.io/github/license/sunillshastry/sunilshastry.com)
 
-![X (formerly Twitter) Follow](https://camo.githubusercontent.com/381432911f7d9a8e6b22d08dcdc733e542832b3c74f12f75774a8c44504bd3ac/68747470733a2f2f696d672e736869656c64732e696f2f747769747465722f666f6c6c6f772f73756e696c6c736861737472793f)
+![X (formerly Twitter) Follow](https://img.shields.io/twitter/follow/sunillshastry)
 
 [https://www.sunilshastry.com](https://www.sunilshastry.com)
 
