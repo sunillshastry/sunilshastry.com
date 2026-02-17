@@ -3,7 +3,7 @@
 import { useTheme } from '@/context/ThemeContext';
 import { Moon, SunMedium } from 'lucide-react';
 
-const ICON_SIZE = 18;
+const ICON_SIZE = 16;
 
 export default function ThemeSwitch() {
 	const { theme, lightSwitch, darkSwitch } = useTheme();
@@ -13,17 +13,17 @@ export default function ThemeSwitch() {
 
 	return (
 		<div
-			className={`fixed top-4 right-5 z-50 flex items-center justify-center gap-x-3 rounded-full border px-2 py-1.5 shadow-md ${theme === 'dark' ? darkStyles : lightStyles}`}
+			className={`fixed top-4 right-5 z-50 flex items-center justify-center gap-x-2 rounded-full border px-2 py-1.5 shadow-md ${theme === 'dark' ? darkStyles : lightStyles}`}
 		>
 			<button
-				className="hover:cursor-pointer"
+				className={`rounded-full p-[2px] hover:cursor-pointer ${theme === 'light' && 'bg-gray-300'}`}
 				onClick={lightSwitch}
 				aria-label="Light Mode"
 			>
 				<SunMedium size={ICON_SIZE} />
 			</button>
 			<button
-				className={`${theme === 'light' ? 'border-black/15' : 'border-white/25'} border-l pl-3 hover:cursor-pointer`}
+				className={`rounded-full p-[2px] hover:cursor-pointer ${theme === 'dark' && 'bg-gray-100 text-black'}`}
 				onClick={darkSwitch}
 				aria-label="Dark Mode"
 			>
