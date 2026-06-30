@@ -53,16 +53,16 @@ export default function Page() {
 				className={`mt-12 text-base leading-10 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}
 			>
 				<Paragraph>
-					I am an undergraduate student at the{' '}
+					I am a graduate of the{' '}
 					<AnchorLink
 						href="https://usask.ca/"
 						title="University of Saskatchewan (USask)"
 					>
 						University of Saskatchewan
 					</AnchorLink>
-					, Canada, currently pursuing a Bachelor of Science degree with a major
-					in Computer Science and a minor in Theoretical Mathematics. My
-					academic interests within computer science primarily focus on{' '}
+					, Canada, with a Bachelor of Science degree, majoring in Computer
+					Science. Now based in Toronto, my primary interests within computer
+					science focused on{' '}
 					<AnchorLink
 						href="https://aws.amazon.com/what-is/full-stack-development/"
 						title="What is Full Stack Development (AWS)"
@@ -74,7 +74,7 @@ export default function Page() {
 						href="https://en.wikipedia.org/wiki/Distributed_computing"
 						title="Distributed Computing (Wikipedia)"
 					>
-						Distributed Systems/Computing
+						Distributed Systems
 					</AnchorLink>{' '}
 					, where I explore the design, functionality, scalability, and user
 					experience aspects of digital systems. In the field of mathematics, I
