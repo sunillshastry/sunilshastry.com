@@ -15,13 +15,15 @@ export const metadata: Metadata = {
 	title: 'Sunil Shastry | University of Saskatchewan',
 	applicationName: 'sunilshastry.com',
 	description:
-		'Sunil Shastry is an undergraduate student at the University of Saskatchewan majoring in Computer Science and minoring in Theoretical Mathematics. His primary expertise lies in Human-Computer Interaction and Web Development',
+		'Sunil Shastry is a graduate of the University of Saskatchewan, with a major in Computer Science. His primary expertise lies in Full Stack Development and Distributed Systems. Sunil Shastry is currently based in Toronto, Canada.',
 	keywords: [
 		'Sunil Shastry',
 		'Sunil',
 		'Shastry',
 		'Sunil Shastri',
 		'University of Saskatchewan',
+		'Toronto',
+		'Canada',
 	],
 	authors: [
 		{
@@ -34,7 +36,7 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: 'Sunil Shastry',
 		description:
-			'Sunil Shastry is an undergraduate student at the University of Saskatchewan majoring in Computer Science and minoring in Theoretical Mathematics. His primary expertise lies in Human-Computer Interaction and Web Development',
+			'Sunil Shastry is a graduate of the University of Saskatchewan, with a major in Computer Science. His primary expertise lies in Full Stack Development and Distributed Systems. Sunil Shastry is currently based in Toronto, Canada.',
 		url: 'https://sunilshastry.com',
 		siteName: 'sunilshastry.com',
 		images: [
@@ -49,7 +51,7 @@ export const metadata: Metadata = {
 	twitter: {
 		title: 'Sunil Shastry',
 		description:
-			'Sunil Shastry is an undergraduate student at the University of Saskatchewan majoring in Computer Science and minoring in Theoretical Mathematics. His primary expertise lies in Human-Computer Interaction and Web Development',
+			'Sunil Shastry is a graduate of the University of Saskatchewan, with a major in Computer Science. His primary expertise lies in Full Stack Development and Distributed Systems. Sunil Shastry is currently based in Toronto, Canada.',
 		card: 'summary_large_image',
 		creator: '@sunillshastry',
 		images: ['https://sunilshastry.com/me.jpg'],
