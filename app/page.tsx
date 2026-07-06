@@ -60,8 +60,8 @@ export default function Page() {
 					>
 						University of Saskatchewan
 					</AnchorLink>
-					, Canada, with a Bachelor of Science degree, majoring in Computer
-					Science. Now based in Toronto, my primary interests within computer
+					&nbsp;with a Bachelor of Science degree, majoring in Computer Science.
+					Now based in Toronto, Canada, my primary interests within computer
 					science focused on{' '}
 					<AnchorLink
 						href="https://aws.amazon.com/what-is/full-stack-development/"
