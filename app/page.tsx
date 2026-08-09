@@ -162,6 +162,17 @@ export default function Page() {
 						Blog
 					</AnchorLink>
 				</li>
+
+				<li>
+					<AnchorLink
+						href="/projects"
+						className="pb-1"
+						title="Projects"
+						target="_self"
+					>
+						Projects
+					</AnchorLink>
+				</li>
 			</ul>
 
 			<p
