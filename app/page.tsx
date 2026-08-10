@@ -1,12 +1,14 @@
 'use client';
 import AnchorLink from '@/components/anchor-link';
 import Paragraph from '@/components/paragraph';
+import SocialsFooter from '@/components/socials-footer';
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { useTheme } from '@/context/ThemeContext';
+import { cn } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -54,10 +56,7 @@ export default function Page() {
 			>
 				<Paragraph>
 					I am a graduate of the{' '}
-					<AnchorLink
-						href="https://usask.ca/"
-						title="University of Saskatchewan (USask)"
-					>
+					<AnchorLink href="/" title="University of Saskatchewan (USask)">
 						University of Saskatchewan
 					</AnchorLink>
 					&nbsp;with a Bachelor of Science degree, majoring in Computer Science.
@@ -100,7 +99,10 @@ export default function Page() {
 					structures, logical reasoning, and computational applications.{' '}
 					<Link
 						href="/resume.pdf"
-						className={`${theme === 'dark' ? 'anchor-link-dark text-white' : 'anchor-link-light text-black'} anchor-link relative inline-flex items-center justify-start gap-x-1 p-0`}
+						className={cn(
+							'inline-flex -skew-2 items-center justify-start gap-x-1 bg-[#C4F7CA] px-1.5 py-1 text-sm leading-6 font-medium text-gray-600 shadow-sm',
+							theme === 'dark' && 'shadow-slate-100/50'
+						)}
 						title="View Sunil's Resume"
 					>
 						<span>View resume</span>
@@ -126,58 +128,7 @@ export default function Page() {
 				</Paragraph>
 			</div>
 
-			<ul className="mt-5 flex gap-x-5">
-				<li>
-					<AnchorLink
-						href="https://www.linkedin.com/in/sunilshastry/"
-						className="pb-1"
-						title="Sunil's LinkedIn"
-					>
-						LinkedIn
-					</AnchorLink>
-				</li>
-				<li>
-					<AnchorLink
-						href="https://github.com/sunillshastry/"
-						className="pb-1"
-						title="Sunil's GitHub"
-					>
-						GitHub
-					</AnchorLink>
-				</li>
-
-				<li>
-					<AnchorLink
-						href="https://sunilshastry.medium.com/"
-						className="pb-1"
-						title="Medium"
-					>
-						Medium
-					</AnchorLink>
-				</li>
-
-				<li>
-					<AnchorLink
-						href="/blogs"
-						className="pb-1"
-						title="Blogs"
-						target="_self"
-					>
-						Blog
-					</AnchorLink>
-				</li>
-
-				<li>
-					<AnchorLink
-						href="/projects"
-						className="pb-1"
-						title="Projects"
-						target="_self"
-					>
-						Projects
-					</AnchorLink>
-				</li>
-			</ul>
+			<SocialsFooter />
 
 			<p
 				className={`mt-6 w-[50%] border-t ${theme === 'dark' ? 'border-white/25' : 'border-black/25'} pt-4 pb-4 text-gray-400 max-lg:w-full max-lg:pb-12`}

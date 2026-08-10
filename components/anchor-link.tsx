@@ -1,6 +1,7 @@
 'use client';
 
 import { useTheme } from '@/context/ThemeContext';
+import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { ComponentPropsWithoutRef } from 'react';
 
@@ -16,11 +17,19 @@ export default function AnchorLink({
 }: FunctionProps) {
 	const { theme } = useTheme();
 
+	const isDarkTheme = theme === 'dark';
+
 	return (
 		<Link
 			href={href as string}
-			className={`${theme === 'dark' ? 'anchor-link-dark text-white' : 'anchor-link-light text-black'} anchor-link relative inline-block p-0 text-shadow-md text-shadow-white/25 ${className}`}
 			target="_blank"
+			className={cn(
+				'rounded-sm border border-dashed px-1 py-0.5 underline-offset-2 transition hover:underline',
+				isDarkTheme
+					? 'border-slate-400 bg-neutral-900 text-slate-300'
+					: 'border-slate-400 bg-slate-100/50 text-slate-700',
+				className
+			)}
 			{...defaultProps}
 		>
 			{children}

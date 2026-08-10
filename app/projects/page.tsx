@@ -1,11 +1,10 @@
 'use client';
+import BackButton from '@/components/back-button';
 import Paragraph from '@/components/paragraph';
 import ProjectCard from '@/components/project-card';
 import { useTheme } from '@/context/ThemeContext';
 import projects from '@/data/projects';
 import { cn } from '@/lib/utils';
-import { ArrowLeft } from 'lucide-react';
-import Link from 'next/link';
 
 export default function Page() {
 	const { theme } = useTheme();
@@ -14,16 +13,9 @@ export default function Page() {
 	return (
 		<section>
 			<header className="pt-6">
-				<Link
-					href="/"
-					title="Home"
-					className="group inline-flex items-center justify-start gap-x-1 rounded-full bg-gray-400/25 px-4 py-2 text-sm font-medium"
-				>
-					<span className="transition group-hover:-translate-x-1">
-						<ArrowLeft size={12} />
-					</span>
-					<span>Home</span>
-				</Link>
+				<BackButton title="Home" href="/">
+					Home
+				</BackButton>
 
 				<h1
 					className={cn(
