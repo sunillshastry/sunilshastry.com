@@ -1,6 +1,7 @@
 'use client';
 import AnchorLink from '@/components/anchor-link';
 import Paragraph from '@/components/paragraph';
+import SocialsFooter from '@/components/socials-footer';
 import {
 	Tooltip,
 	TooltipContent,
@@ -54,10 +55,7 @@ export default function Page() {
 			>
 				<Paragraph>
 					I am a graduate of the{' '}
-					<AnchorLink
-						href="https://usask.ca/"
-						title="University of Saskatchewan (USask)"
-					>
+					<AnchorLink href="/" title="University of Saskatchewan (USask)">
 						University of Saskatchewan
 					</AnchorLink>
 					&nbsp;with a Bachelor of Science degree, majoring in Computer Science.
@@ -126,58 +124,7 @@ export default function Page() {
 				</Paragraph>
 			</div>
 
-			<ul className="mt-5 flex gap-x-5">
-				<li>
-					<AnchorLink
-						href="https://www.linkedin.com/in/sunilshastry/"
-						className="pb-1"
-						title="Sunil's LinkedIn"
-					>
-						LinkedIn
-					</AnchorLink>
-				</li>
-				<li>
-					<AnchorLink
-						href="https://github.com/sunillshastry/"
-						className="pb-1"
-						title="Sunil's GitHub"
-					>
-						GitHub
-					</AnchorLink>
-				</li>
-
-				<li>
-					<AnchorLink
-						href="https://sunilshastry.medium.com/"
-						className="pb-1"
-						title="Medium"
-					>
-						Medium
-					</AnchorLink>
-				</li>
-
-				<li>
-					<AnchorLink
-						href="/blogs"
-						className="pb-1"
-						title="Blogs"
-						target="_self"
-					>
-						Blog
-					</AnchorLink>
-				</li>
-
-				<li>
-					<AnchorLink
-						href="/projects"
-						className="pb-1"
-						title="Projects"
-						target="_self"
-					>
-						Projects
-					</AnchorLink>
-				</li>
-			</ul>
+			<SocialsFooter />
 
 			<p
 				className={`mt-6 w-[50%] border-t ${theme === 'dark' ? 'border-white/25' : 'border-black/25'} pt-4 pb-4 text-gray-400 max-lg:w-full max-lg:pb-12`}
