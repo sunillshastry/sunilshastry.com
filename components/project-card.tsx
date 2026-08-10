@@ -79,7 +79,7 @@ export default function ProjectCard({ project }: FunctionProps) {
 							isDarkTheme && 'border-cyan-400 text-cyan-400'
 						)}
 					>
-						<span>Live Demo</span>
+						<span>Preview</span>
 						<ExternalLink size={18} />
 					</Link>
 				)}
