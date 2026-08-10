@@ -23,7 +23,7 @@ export default function ProjectCard({ project }: FunctionProps) {
 				isDarkTheme && 'border-gray-100/35 shadow-gray-100/35'
 			)}
 		>
-			<h4
+			<h2
 				className={cn(
 					'flex items-center justify-between border-b py-2 text-xl font-bold',
 					isDarkTheme && 'border-b-gray-100/35'
@@ -31,7 +31,7 @@ export default function ProjectCard({ project }: FunctionProps) {
 			>
 				<span>{project.name}</span>
 				{project.phase && <ProjectInDevelopment phase={project.phase} />}
-			</h4>
+			</h2>
 			<p className="pt-3 text-base leading-8 text-inherit">
 				{project.description}
 			</p>
@@ -57,6 +57,7 @@ export default function ProjectCard({ project }: FunctionProps) {
 					<Link
 						href={project.githubUrl}
 						target="_blank"
+						title="GitHub"
 						className={cn(
 							'flex items-center justify-start gap-x-1.5 rounded-md border px-4 py-2',
 							isDarkTheme && 'border-gray-100/35'
@@ -74,6 +75,7 @@ export default function ProjectCard({ project }: FunctionProps) {
 					<Link
 						href={project.liveDemoUrl}
 						target="_blank"
+						title="Preview"
 						className={cn(
 							'flex items-center justify-start gap-x-1.5 rounded-md border border-cyan-600 px-4 py-2 text-cyan-600',
 							isDarkTheme && 'border-cyan-400 text-cyan-400'

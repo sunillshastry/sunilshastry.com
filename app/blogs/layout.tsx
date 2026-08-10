@@ -7,7 +7,7 @@ interface FunctionProps {
 }
 
 export const metadata: Metadata = {
-	title: 'Blogs | Sunil Shastry | University of Saskatchewan',
+	title: 'Blogs | Sunil Shastry | Software Engineer',
 };
 
 export default function Layout({ children }: FunctionProps) {

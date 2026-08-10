@@ -12,7 +12,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-	title: 'Sunil Shastry | University of Saskatchewan',
+	title: 'Sunil Shastry | Software Engineer | Toronto, Canada',
 	applicationName: 'sunilshastry.com',
 	description:
 		'Sunil Shastry is a graduate of the University of Saskatchewan, with a major in Computer Science. His primary expertise lies in Full Stack Development and Distributed Systems. Sunil Shastry is currently based in Toronto, Canada.',

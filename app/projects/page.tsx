@@ -25,14 +25,14 @@ export default function Page() {
 					<span>Home</span>
 				</Link>
 
-				<h2
+				<h1
 					className={cn(
 						'mt-6 text-4xl font-semibold',
 						isDarkTheme ? 'linear-text' : 'linear-text-light'
 					)}
 				>
 					Projects
-				</h2>
+				</h1>
 				<Paragraph className="mt-5 w-[80%] text-sm max-md:w-full">
 					A collection of things I&apos;ve built, explored, and worked on over
 					the years. Each project started with an idea, a problem, or simply a
