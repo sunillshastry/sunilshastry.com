@@ -62,7 +62,7 @@ export default function Page() {
 					</AnchorLink>
 					&nbsp;with a Bachelor of Science degree, majoring in Computer Science.
 					Now based in Toronto, Canada, my primary interests within computer
-					science focused on{' '}
+					science are{' '}
 					<AnchorLink
 						href="https://aws.amazon.com/what-is/full-stack-development/"
 						title="What is Full Stack Development (AWS)"
@@ -77,8 +77,12 @@ export default function Page() {
 						Distributed Systems
 					</AnchorLink>{' '}
 					, where I explore the design, functionality, scalability, and user
-					experience aspects of digital systems. In the field of mathematics, I
-					am particularly drawn to{' '}
+					experience aspects of digital systems; to see what I have been
+					building lately and explore my work, check out the{' '}
+					<AnchorLink href="/projects" title="Projects" target="_self">
+						projects
+					</AnchorLink>{' '}
+					page. In the field of mathematics, I am particularly drawn to{' '}
 					<AnchorLink
 						href="https://www.britannica.com/science/linear-algebra"
 						title="Linear Algebra (Britannica)"
