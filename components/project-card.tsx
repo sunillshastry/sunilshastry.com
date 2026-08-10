@@ -30,7 +30,7 @@ export default function ProjectCard({ project }: FunctionProps) {
 				)}
 			>
 				<span>{project.name}</span>
-				{project.inDevelopment && <ProjectInDevelopment />}
+				{project.phase && <ProjectInDevelopment phase={project.phase} />}
 			</h4>
 			<p className="pt-3 text-base leading-8 text-inherit">
 				{project.description}

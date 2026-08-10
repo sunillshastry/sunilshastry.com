@@ -1,4 +1,12 @@
-export default function ProjectInDevelopment() {
+import { ProjectPhase } from '@/interfaces/Project';
+
+interface FunctionProps {
+	phase?: ProjectPhase;
+}
+
+export default function ProjectInDevelopment({
+	phase = 'development',
+}: FunctionProps) {
 	return (
 		<span className="flex items-center justify-start gap-x-2 rounded-md border border-green-600 bg-green-100 px-1.5 py-1">
 			<span className="relative flex size-2">
@@ -7,7 +15,7 @@ export default function ProjectInDevelopment() {
 			</span>
 
 			<span className="font-mono text-xs text-green-600 uppercase">
-				In development
+				{phase} phase
 			</span>
 		</span>
 	);

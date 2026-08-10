@@ -17,6 +17,7 @@ const projects: Project[] = [
 			'AWS',
 			'DigitalOcean',
 		],
+		phase: 'development',
 		githubUrl: 'https://github.com/sunillshastry/itihaas-api',
 		liveDemoUrl: 'https://itihaas.netlify.app/',
 	},
@@ -36,6 +37,7 @@ const projects: Project[] = [
 			'Docker',
 			'AWS',
 		],
+		phase: 'planning',
 		githubUrl: 'http://github.com/dinnerdibs/',
 	},
 ];
