@@ -6,6 +6,7 @@ import { ExternalLink } from 'lucide-react';
 import { Project } from '@/interfaces/Project';
 import { useTheme } from '@/context/ThemeContext';
 import { cn } from '@/lib/utils';
+import ProjectInDevelopment from './project-in-development';
 
 interface FunctionProps {
 	project: Project;
@@ -24,11 +25,12 @@ export default function ProjectCard({ project }: FunctionProps) {
 		>
 			<h4
 				className={cn(
-					'border-b py-2 text-xl font-bold',
+					'flex items-center justify-between border-b py-2 text-xl font-bold',
 					isDarkTheme && 'border-b-gray-100/35'
 				)}
 			>
-				{project.name}
+				<span>{project.name}</span>
+				{project.inDevelopment && <ProjectInDevelopment />}
 			</h4>
 			<p className="pt-3 text-base leading-8 text-inherit">
 				{project.description}
