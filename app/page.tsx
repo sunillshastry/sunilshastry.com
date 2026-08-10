@@ -8,6 +8,7 @@ import {
 	TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { useTheme } from '@/context/ThemeContext';
+import { cn } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -98,7 +99,10 @@ export default function Page() {
 					structures, logical reasoning, and computational applications.{' '}
 					<Link
 						href="/resume.pdf"
-						className={`${theme === 'dark' ? 'anchor-link-dark text-white' : 'anchor-link-light text-black'} anchor-link relative inline-flex items-center justify-start gap-x-1 p-0`}
+						className={cn(
+							'inline-flex -skew-2 items-center justify-start gap-x-1 bg-[#C4F7CA] px-1.5 py-1 text-sm leading-6 font-medium text-gray-600 shadow-sm',
+							theme === 'dark' && 'shadow-slate-100/50'
+						)}
 						title="View Sunil's Resume"
 					>
 						<span>View resume</span>
