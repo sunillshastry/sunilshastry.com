@@ -24,10 +24,10 @@ export default function AnchorLink({
 			href={href as string}
 			target="_blank"
 			className={cn(
-				'rounded-sm border border-dashed px-1 py-0.5 underline-offset-2 transition hover:underline',
+				'rounded-sm border border-dashed px-1 py-0.5 underline-offset-2 transition',
 				isDarkTheme
-					? 'border-slate-400 bg-neutral-900 text-slate-300'
-					: 'border-slate-400 bg-slate-100/50 text-slate-700',
+					? 'border-slate-400 bg-neutral-900 text-slate-300 hover:bg-neutral-700'
+					: 'border-slate-400 bg-slate-100/50 text-slate-700 hover:bg-slate-200',
 				className
 			)}
 			{...defaultProps}
