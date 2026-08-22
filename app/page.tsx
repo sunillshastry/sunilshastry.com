@@ -61,7 +61,10 @@ export default function Page() {
 			>
 				<Paragraph>
 					I am a graduate of the{' '}
-					<AnchorLink href="/" title="University of Saskatchewan (USask)">
+					<AnchorLink
+						href="https://usask.ca/"
+						title="University of Saskatchewan (USask)"
+					>
 						University of Saskatchewan
 					</AnchorLink>
 					&nbsp;with a Bachelor of Science degree, majoring in Computer Science.
