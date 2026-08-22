@@ -22,7 +22,12 @@ export default function Page() {
 				<h2
 					className={`${theme == 'dark' ? 'linear-text' : 'linear-text-light'} text-4xl font-extrabold`}
 				>
-					Namaste,
+					<Tooltip>
+						<TooltipContent>Hello in Sanskrit (नमस्ते) </TooltipContent>
+						<TooltipTrigger>
+							<span>Namaste,</span>
+						</TooltipTrigger>
+					</Tooltip>
 				</h2>
 				<div className="flex items-center justify-start gap-x-2 max-lg:flex-col max-lg:items-start max-lg:gap-y-5">
 					<h1
