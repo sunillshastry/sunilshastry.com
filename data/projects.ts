@@ -10,7 +10,7 @@ const projects: Project[] = [
 			'React',
 			'TypeScript',
 			'Node.js',
-			'GraphQL',
+			'BullMQ',
 			'MongoDB',
 			'Redis',
 			'Docker',
@@ -37,8 +37,9 @@ const projects: Project[] = [
 			'Docker',
 			'AWS',
 		],
-		phase: 'planning',
+		phase: 'development',
 		githubUrl: 'http://github.com/dinnerdibs/',
+		liveDemoUrl: 'https://dinnerdibs.vercel.app/',
 	},
 ];
 
